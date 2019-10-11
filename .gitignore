@@ -7,8 +7,8 @@ bin/
 .classpath
 
 # Intellij
-.idea/
-target/
+.idea
+target
 
 # Maven
 log/
