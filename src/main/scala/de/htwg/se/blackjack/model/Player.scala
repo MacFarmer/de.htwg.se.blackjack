@@ -1,5 +1,5 @@
 package de.htwg.se.blackjack.model
 
-class Player {
-
+case class Player(name: String) {
+  override def toString:String = name;
 }
