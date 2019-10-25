@@ -6,6 +6,6 @@ object  Blackjack {
   def main(args: Array[String]): Unit = {
     val daniel = Player("Daniel")
     val marc = Player("Marc");
-    println("Hi wir sind " + daniel + " und " + marc " !")
+    println("Hi wir sind " + daniel + " und " + marc + " und wir Programmieren Blackjack in Scala !")
   }
 }
