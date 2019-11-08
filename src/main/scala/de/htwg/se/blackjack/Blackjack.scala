@@ -12,12 +12,13 @@ object  Blackjack {
     def menu(): Unit = {
       println("Willkommen zu Blackjack!")
       println("<Name1>_<Name2>: Beide Spieler werden ausgegeben")
+      println("ng: create New Game")
       println("q: Programm beenden.")
     }
 
     menu()
     val input = scala.io.StdIn.readLine()
-    if (input.equals("q")) {
+    if(input.length < 2) {
       tui.processInputLine(input)
     } else {
       val split = input.split(" ")
