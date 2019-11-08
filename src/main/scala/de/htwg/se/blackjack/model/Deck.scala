@@ -19,3 +19,7 @@ abstract class Deck {
   }
 
 }
+
+object Deck {
+
+}
