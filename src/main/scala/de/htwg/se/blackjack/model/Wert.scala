@@ -15,5 +15,6 @@ sealed abstract class Wert(val value: Int) {
   case object Four extends Wert(4)
   case object Three extends Wert(3)
   case object Two extends Wert(2)
-  case object Ace extends Wert(1)
+  case object Ace1 extends Wert(1)
+  case object Ace11 extends Wert(11)
 }

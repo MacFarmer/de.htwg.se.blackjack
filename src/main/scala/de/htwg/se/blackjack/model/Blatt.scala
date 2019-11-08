@@ -2,7 +2,7 @@ package de.htwg.se.blackjack.model
 
 
 
-sealed trait Blatt {
+abstract class Blatt {
 
   //repräsentiert Kartendeck - Herz, Karo, Pik, Kreuz
 
