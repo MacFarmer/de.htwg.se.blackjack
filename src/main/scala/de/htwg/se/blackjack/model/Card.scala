@@ -12,6 +12,10 @@ case class Card(suit: String, value: String) {
   def getValue(): String = {
     value
   }
+
+  def test() = {
+    ()
+  }
 }
 
 
