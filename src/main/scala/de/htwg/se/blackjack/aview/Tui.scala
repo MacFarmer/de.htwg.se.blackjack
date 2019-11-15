@@ -6,8 +6,8 @@ class Tui() extends Observer{
 
   def processInputLine(input: String) = {
     input match {
-      case "q" => println("Bye!")
-      case "ng" => println("Neu Game created!")
+      case "q" => "Bye!"
+      case "ng" => "New Game created!"
     }
   }
 
