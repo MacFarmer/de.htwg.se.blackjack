@@ -1,9 +1,10 @@
 package de.htwg.se.blackjack.aview
 
-import de.htwg.se.sudoku.util.Observer
+import de.htwg.se.blackjack.controller.Controller
+import de.htwg.se.cards.util.Observer
 
-class Tui() extends Observer{
-
+class Tui(){
+  //controller.add(this)
   def processInputLine(input: String) = {
     input match {
       case "q" => "Bye!"
@@ -11,5 +12,5 @@ class Tui() extends Observer{
     }
   }
 
-  override def update: Unit = ???
+  //override def update: Boolean = ???
 }

@@ -1,12 +1,19 @@
 package de.htwg.se.blackjack
 
-import de.htwg.se.blackjack.model.{Card, Player}
+import de.htwg.se.blackjack.model.{Card, Deck, Player, Status}
 import de.htwg.se.blackjack.aview.Tui
+import de.htwg.se.blackjack.controller.Controller
+import de.htwg.se.cards.model.Dealer
 
 
 
-object  Blackjack {
+object Blackjack {
   def main(args: Array[String]): Unit = {
+    val name1 = Player("Daniel", Nil)
+    val name2 = Player("Marc", Nil)
+    val testDealer = Dealer(Deck().cards.take(10))
+    val status = Status(testDealer, List(name1, name2))
+    val controller = new Controller(status)
     val tui = new Tui()
 
     def menu(): Unit = {
@@ -18,12 +25,8 @@ object  Blackjack {
 
     menu()
     val input = scala.io.StdIn.readLine()
-    if(input.length < 2) {
+    if (input.length < 1) {
       tui.processInputLine(input)
-    } else {
-      val split = input.split(" ")
-      val name1 = Player(split(0), Nil)
-      val name2 = Player(split(1), Nil)
       println("Hi wir sind " + name1 + " und " + name2 + " und wir Programmieren Blackjack in Scala !")
     }
   }

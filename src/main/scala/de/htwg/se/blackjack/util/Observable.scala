@@ -1,7 +1,7 @@
-package de.htwg.se.sudoku.util
+package de.htwg.se.cards.util
 
 trait Observer {
-  def update: Unit
+  def update: Boolean
 }
 
 class Observable {
