@@ -22,8 +22,8 @@ object  Blackjack {
       tui.processInputLine(input)
     } else {
       val split = input.split(" ")
-      val name1 = Player(split(0))
-      val name2 = Player(split(1))
+      val name1 = Player(split(0), Nil)
+      val name2 = Player(split(1), Nil)
       println("Hi wir sind " + name1 + " und " + name2 + " und wir Programmieren Blackjack in Scala !")
     }
   }
