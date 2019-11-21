@@ -4,7 +4,7 @@ import de.htwg.se.cards.model.Dealer
 import org.scalatest.{Matchers, WordSpec}
 
 class DealerSpec extends WordSpec with Matchers {
-  "A Talon" when {
+  "A Deck" when {
     val d = Deck()
     val dealer = Dealer(d.cards)
     "filled" should {
@@ -15,9 +15,7 @@ class DealerSpec extends WordSpec with Matchers {
     "droped" should {
       val (droped, card) = dealer.drop()
       "have one card less" in {
-        droped.cards.size should be {
-          dealer.cards.size - 1
-        }
+        droped.cards.size should be (dealer.cards.size - 1)
       }
       "not contain droped card" in {
         droped.cards.contains(card.get) should be(false)
