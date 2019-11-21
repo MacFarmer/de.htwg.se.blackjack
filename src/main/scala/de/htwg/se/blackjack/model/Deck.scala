@@ -11,18 +11,6 @@ case class Deck() {
     v <- value
     } yield Card(s, v)
 
-  /*def shuffle(): List[Card] = {
-    util.Random.shuffle(cards)
-  }*/
 
-  override def toString(): String = {
-    cards.toString()
-  }
-
-  def valuee() = {
-    for(card <- cards) {
-      println(card.suit + " : " + card.value)
-    }
-  }
 
 }
