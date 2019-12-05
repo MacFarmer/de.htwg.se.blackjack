@@ -9,15 +9,22 @@ class Controller(var status: Status) extends Observable {
     notifyObservers
   }
 
-  def drawCard: Unit = {
-    status = status.drawCard
+  def hit: Unit = {
+    status = status.hit
     notifyObservers
   }
 
-  def shuffle: Unit = {
+
+
+  /*def shuffle: Unit = {
     status = status.shuffle
     notifyObservers
-  }
+  }*/
+
+ /* def hit: Unit = {
+    status = status.hit
+    notifyObservers
+  } */
 
   def statToString: String = status.toString
 }

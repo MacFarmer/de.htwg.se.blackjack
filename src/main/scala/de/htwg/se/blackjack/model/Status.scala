@@ -1,16 +1,12 @@
 package de.htwg.se.blackjack.model
 
-import de.htwg.se.cards.model.Dealer
+case class Status(player: Player, list: List[Player]) {
 
-case class Status(dealer: Dealer, list: List[Player]) {
+  val deck: DeckSingleton
 
-  def drawCard: Status = {
-    var(drop, card) = dealer.drop()
-    this.copy(drop, list.head.takeCard(card) :: list.tail)
-  }
-
-  def shuffle: Status = {
-    this.copy(dealer = dealer.shuffle())
+  def hit: Status = {
+    val list = player.addCard(deck.dealCard)
+    this.copy(list)
   }
 
   def nextPlayer: Status = {

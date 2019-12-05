@@ -6,8 +6,8 @@ import scala.collection.immutable
 
 class PlayerSpec extends WordSpec with Matchers {
   "A Player" when { "new" should {
-    val daniel = Player("Daniel", Nil)
-    val marc = Player("Marc", Nil)
+    val daniel = Player("Daniel", Nil, 100)
+    val marc = Player("Marc", Nil, 50)
     "have a name" in {
       daniel.name should be("Daniel")
       daniel.cards should be(Nil)
@@ -22,5 +22,6 @@ class PlayerSpec extends WordSpec with Matchers {
     "have also a nice String representation" in {
       marc.toString should be (marc.name + "'s cards: " + marc.cards)
     }
+
   }}
 }

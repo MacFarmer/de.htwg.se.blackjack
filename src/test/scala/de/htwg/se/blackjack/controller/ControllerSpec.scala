@@ -1,16 +1,15 @@
 package de.htwg.se.blackjack.controller
 
-import de.htwg.se.blackjack.model.{Deck, Player, Status}
-import de.htwg.se.cards.model.Dealer
+import de.htwg.se.blackjack.model.{DeckSingleton, Player, Status}
 import de.htwg.se.cards.util.Observer
 import org.scalatest.{Matchers, WordSpec}
 
 class ControllerSpec extends WordSpec with Matchers {
   "A Controller" when {
     "observed by an Observer" should {
-      val daniel = Player("Daniel", Nil)
-      val marc = Player("Marc", Nil)
-      val dealer = Dealer(Deck().cards)
+      val daniel = Player("Daniel", Nil, 100)
+      val marc = Player("Marc", Nil, 50)
+      val dealer = Dealer(DeckSingleton.cards)
       val list = List(daniel, marc)
       val status = Status(dealer, list)
 
@@ -22,16 +21,16 @@ class ControllerSpec extends WordSpec with Matchers {
         override def update: Boolean = {updated = true; updated}
       }
       controller.add(observer)
-      "notify its Observer after shuffle" in {
+     /* "notify its Observer after shuffle" in {
         controller.shuffle
         observer.updated should be(true)
         controller.status.dealer should not be dealer.shuffle()
-      }
+      }*/
       "notify its observer after draw" in {
-        controller.drawCard
+        controller.hit
         observer.updated should be(true)
-        status.drawCard.dealer.cards.size should be(status.dealer.cards.size-1)
-        status.drawCard.current.cards.size should be(status.current.cards.size+1)
+        status.hit.dealer.cards.size should be(status.dealer.cards.size-1)
+        status.hit.current.cards.size should be(status.current.cards.size+1)
       }
       "notify its Observer after nextPlayer" in {
         controller.nextPlayer
