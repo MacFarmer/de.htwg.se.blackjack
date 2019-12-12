@@ -1,4 +1,4 @@
-package de.htwg.se.cards.util
+package de.htwg.se.blackjack.util
 
 import org.scalatest.{Matchers, WordSpec}
 
