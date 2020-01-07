@@ -1,11 +1,11 @@
 package de.htwg.se.blackjack.controller
 
-import de.htwg.se.blackjack.model.StatusFacade
+import de.htwg.se.blackjack.model.Status
 import org.scalatest.{Matchers, WordSpec}
 
 class ControllerSpec extends WordSpec with Matchers {
   "A Controller" when { "new" should {
-    val status = new StatusFacade
+    val status = new Status
     val controller = new Controller(status)
     val player = Array(controller.draw())
     "should gerenate new Deck of Cards" in {

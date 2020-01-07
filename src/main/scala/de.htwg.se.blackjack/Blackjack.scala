@@ -4,10 +4,9 @@
 
 import de.htwg.se.blackjack.aview.Tui
 import de.htwg.se.blackjack.controller.Controller
-import de.htwg.se.blackjack.model.{DeckSingleton, Hand, StatusFacade}
+import de.htwg.se.blackjack.model.{Deck, Status}
 
 import scala.io.StdIn.readLine
-
 
 
 
@@ -25,13 +24,13 @@ object BlackJack {
 
 
   def main(args: Array[String]) {
-    val status = new StatusFacade
+    val status = new Status
     val controller = new Controller(status)
     val tui = new Tui(controller)
     println("Welcome to Blackjack!")
     while(true) {
       tui.gameStart()
-      println("---Wanna play another Game?---\n")
+      println("---Wanna play another Game?---")
       if(!tui.askYesNo(readLine()))
         return
     }

@@ -1,5 +1,7 @@
 package de.htwg.se.blackjack.util
 
+import de.htwg.se.blackjack.util.Command
+
 class UndoManager {
   private var undoStack: List[Command] = Nil
   private var redoStack: List[Command] = Nil

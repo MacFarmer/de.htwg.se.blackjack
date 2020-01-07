@@ -1,9 +1,9 @@
 package de.htwg.se.blackjack.controller
 
-import de.htwg.se.blackjack.model.{Card, StatusFacade}
-import de.htwg.se.blackjack.util.{Observable, UndoManager}
+import de.htwg.se.blackjack.model.{Card, Status}
+import de.htwg.se.blackjack.util.{Observable, Observer, UndoManager}
 
-class Controller(var status: StatusFacade) extends Observable {
+class Controller(var status: Status) extends Observable with ControllerInterface {
   //var status: Status
   private val undoManager = new UndoManager
 
@@ -15,6 +15,11 @@ class Controller(var status: StatusFacade) extends Observable {
   def generateDeck = {
     status.generateDeck()
     notifyObservers
+  }
+
+  def handValue(hand: Array[Card]) = {
+    notifyObservers
+    status.handValue(hand)
   }
 
   def draw(): Card = {
@@ -31,4 +36,6 @@ class Controller(var status: StatusFacade) extends Observable {
     undoManager.redoStep()
     notifyObservers
   }
+
+  //override def toString: String = status.toString
 }
