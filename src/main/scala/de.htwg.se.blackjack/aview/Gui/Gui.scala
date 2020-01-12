@@ -22,7 +22,7 @@ object Gui extends JFXApp {
   var dealerStack = Stack[Card]()
   var playerStack = Stack[Card]()
   stage = new PrimaryStage {
-
+  val menuPane = new StackPane()
 
       val menubar = new MenuBar {
 
@@ -33,6 +33,7 @@ object Gui extends JFXApp {
                 text = "New Game"
                 onAction = handle {
 //                  content = Seq(view, label, buttonStart)
+                  menuPane
                 }
               }
             )
@@ -138,7 +139,7 @@ object Gui extends JFXApp {
         // Check if Player is below 21
 
           hitButton.onAction = (e: ActionEvent) => {
-            if(player.handValue() < 21) {
+            if((player.handValue() < 21) && (dealer.handValue() <= 21)) {
             player.addCard(controller.draw())
 //            hitButton.layoutY = 125
 //            hitButton.layoutX = 560
@@ -146,24 +147,33 @@ object Gui extends JFXApp {
               playerLabel.setText(player.name + ": " + player.handValue().toString)
 //              val Playerimg2 = new ImageView(new Image("file:image\\cards\\" + player.karte.last.face + "" + player.karte.last.suit + ".png", 86, 95, false, true))
               Playerimg2.setImage(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
-              content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2)
+              content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
           } else {
-              if(player.handValue() > 21) {
+              if(player.handValue() > 21 && dealer.handValue() <= 21) {
                 new Alert(AlertType.Information, "Player Bust!").showAndWait()
-              } else if (player.handValue() > dealer.handValue()) {
-                new Alert(AlertType.Information, "Player Win!").showAndWait()
-              } else if (player.handValue() < dealer.handValue()) {
-                new Alert(AlertType.Information, "Dealer Win!").showAndWait()
-              } else {
+                content = Seq(view, menubar,  label, buttonStart)
+              } else if (player.handValue() == 21 && dealer.handValue() != 21) {
+                new Alert(AlertType.Information, "Player has a BLACKJACK!").showAndWait()
+                content = Seq(view, menubar,  label, buttonStart)
+              } else if (player.handValue() < dealer.handValue() && dealer.handValue() <= 21) {
+                new Alert(AlertType.Information, "Dealer Wins!").showAndWait()
+                content = Seq(view, menubar,  label, buttonStart)
+              } else if (player.handValue() < dealer.handValue() && dealer.handValue() > 21) {
+                new Alert(AlertType.Information, "Player Wins!").showAndWait()
+                content = Seq(view, menubar,  label, buttonStart)
+              } else if ((player.handValue() == dealer.handValue()) && player.handValue() <= 21) {
                 new Alert(AlertType.Information, "You have a Tie!").showAndWait()
+                content = Seq(view, menubar,  label, buttonStart)
               }
               content = Seq(view, menubar,  label, buttonStart)
+
             }
-              content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+//              content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
 
 
         }
         content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+
         standButton.onAction = (e: ActionEvent) => {
           while(dealer.handValue() < 17) {
             dealer.addCard(controller.draw())
@@ -172,17 +182,36 @@ object Gui extends JFXApp {
             content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
           }
 
-            if(dealer.handValue() > 21) {
+            if(dealer.handValue() > 21 && player.handValue() <= 21) {
               new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
-            } else if (player.handValue() > dealer.handValue()) {
-              new Alert(AlertType.Information, "Player Win!").showAndWait()
-            } else if (player.handValue() < dealer.handValue()) {
+            } else if ((player.handValue() > dealer.handValue()) && player.handValue() < 21) {
+              new Alert(AlertType.Information, "Player Wins 222!").showAndWait()
+            } else if (player.handValue() == 21 && dealer.handValue() != 21) {
+              new Alert(AlertType.Information, "Player has a BLACKJACK!").showAndWait()
+            } else if (player.handValue() < dealer.handValue() && dealer.handValue() < 21) {
               new Alert(AlertType.Information, "Dealer Win!").showAndWait()
-            } else {
+            } else if (dealer.handValue() == 21 && player.handValue() != 21) {
+              new Alert(AlertType.Information, "Dealer has a BLACKJACK!").showAndWait()
+            } else if (player.handValue() > dealer.handValue() && player.handValue() > 21) {
+              new Alert(AlertType.Information, "Player Bust!").showAndWait()
+            } else if (player.handValue() < dealer.handValue() && dealer.handValue() < 21) {
+              new Alert(AlertType.Information, "Dealer Win!").showAndWait()
+            } else if (player.handValue() == dealer.handValue() && dealer.handValue() <= 21) {
               new Alert(AlertType.Information, "You have a Tie!").showAndWait()
             }
+          content = Seq(view, menubar,  label, buttonStart)
+
         }
-//        content = List(view, menubar, hitButton ,dealerLabel, playerLabel, pane)
+
+        if (dealer.handValue() > 21) {
+          new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
+          content = Seq(view, menubar,  label, buttonStart)
+        }
+
+        if (player.handValue() > 21) {
+          new Alert(AlertType.Information, "Player Bust!").showAndWait()
+          content = Seq(view, menubar,  label, buttonStart)
+        }
 
       }
 
@@ -202,7 +231,6 @@ object Gui extends JFXApp {
       //view.delegate
       pane.children = List(menubar, view, label)
       content = Seq(view, menubar,  label, buttonStart)
-
     }
   }
 
