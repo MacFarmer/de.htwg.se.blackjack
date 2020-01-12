@@ -138,7 +138,17 @@ object Gui extends JFXApp {
 
         // Check if Player is below 21
 
-          hitButton.onAction = (e: ActionEvent) => {
+        if (dealer.handValue() > 21) {
+          new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
+          content = Seq(view, menubar,  label, buttonStart)
+        }
+
+        if (player.handValue() > 21) {
+          new Alert(AlertType.Information, "Player Bust!").showAndWait()
+          content = Seq(view, menubar,  label, buttonStart)
+        }
+
+        hitButton.onAction = (e: ActionEvent) => {
             if((player.handValue() < 21) && (dealer.handValue() <= 21)) {
             player.addCard(controller.draw())
 //            hitButton.layoutY = 125
@@ -185,7 +195,7 @@ object Gui extends JFXApp {
             if(dealer.handValue() > 21 && player.handValue() <= 21) {
               new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
             } else if ((player.handValue() > dealer.handValue()) && player.handValue() < 21) {
-              new Alert(AlertType.Information, "Player Wins 222!").showAndWait()
+              new Alert(AlertType.Information, "Player Wins!").showAndWait()
             } else if (player.handValue() == 21 && dealer.handValue() != 21) {
               new Alert(AlertType.Information, "Player has a BLACKJACK!").showAndWait()
             } else if (player.handValue() < dealer.handValue() && dealer.handValue() < 21) {
@@ -201,16 +211,6 @@ object Gui extends JFXApp {
             }
           content = Seq(view, menubar,  label, buttonStart)
 
-        }
-
-        if (dealer.handValue() > 21) {
-          new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
-          content = Seq(view, menubar,  label, buttonStart)
-        }
-
-        if (player.handValue() > 21) {
-          new Alert(AlertType.Information, "Player Bust!").showAndWait()
-          content = Seq(view, menubar,  label, buttonStart)
         }
 
       }
