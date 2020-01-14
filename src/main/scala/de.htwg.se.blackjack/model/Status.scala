@@ -46,17 +46,23 @@ class Status {
   def WinLose(spieler: Integer, dealer: Integer): Int = {
     if (dealer > 21) {
       println("Dealer Bust! You win!")
+      GameState.WON.id
+    } else if (spieler > 21) {
+      println("You Bust! Dealer wins!")
       GameState.LOST.id
-    } else if (spieler > dealer && spieler >= 21) {
+    } else if (spieler > dealer && spieler <= 21) {
       println("You win!")
       GameState.WON.id
-    } else if (spieler < dealer) {
+    } else if (spieler < dealer && dealer <= 21) {
       println("You lost!")
       GameState.LOST.id
-    } else if (spieler == 21) {
-      println("Blackjack!!!")
+    } else if (spieler == 21 && dealer != 21) {
+      println("You have a Blackjack!!!")
       GameState.WON.id
-    } else {
+    } else if (dealer == 21 && spieler != 21) {
+      println("Dealer has a Blackjack!!!")
+      GameState.LOST.id
+    } else if (dealer == spieler && spieler <= 21) {
       println("You have a tie!")
       GameState.PUSH.id
     }
