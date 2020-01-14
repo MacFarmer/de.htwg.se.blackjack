@@ -62,7 +62,7 @@ class Status {
     } else if (dealer == 21 && spieler != 21) {
       println("Dealer has a Blackjack!!!")
       GameState.LOST.id
-    } else if (dealer == spieler && spieler <= 21) {
+    } else {
       println("You have a tie!")
       GameState.PUSH.id
     }

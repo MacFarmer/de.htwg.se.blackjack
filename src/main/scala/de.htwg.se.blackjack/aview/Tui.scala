@@ -72,7 +72,7 @@ class Tui(controller: Controller) extends Observer {
       if (input.equals("h")) {
         want = true
         player.addCard(controller.draw())
-        printf("Daniel:\t\tYour total is %d\n", player.handValue())
+        printf("Player:\t\tYour total is %d\n", player.handValue())
         if (player.handValue() > 21) {
           println("Player:\t\tYou Bust! Sorry you lost right away!")
           return -1
@@ -82,10 +82,10 @@ class Tui(controller: Controller) extends Observer {
       } else if(input.equals("undo")) {
         player.takeCardAway()
         println(player.name + player.karte.reverse)
-        printf("Daniel:\t\tYour total is %d\n", player.handValue())
+        printf("Player:\t\tYour total is %d\n", player.handValue())
       } else if (input.equals("redo")) {
         player.returnCard()
-        printf("Daniel:\t\tYour total is %d\n", player.handValue())
+        printf("Player:\t\tYour total is %d\n", player.handValue())
       }
     }
     while (dealer.handValue() < 17) {
