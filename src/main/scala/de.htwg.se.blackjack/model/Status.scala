@@ -18,6 +18,7 @@ class Status {
     }
   }
 
+
   def shuffleDeck() = {
     for (i <- 1 to 52) {
       // 0..i-2 already shuffled
@@ -27,8 +28,6 @@ class Status {
       Deck.cards(i-1) = cj
     }
   }
-
-
 
   def draw(): Card = {
     assert(Deck.count > 0)
@@ -43,7 +42,22 @@ class Status {
     value
   }
 
-  def WinLose(spieler: Integer, dealer: Integer): Int = {
+//    def handValue(hand: Array[Card]): Int = {
+//      var value = 0
+//      if (hand.exists(c => c.face != "Ace")) {
+//        for (card <- hand)
+//          value += card.value
+//      } else if ((hand.exists(c => c.face == "Ace") && value > 21)) {
+//        for (card <- hand)
+//          value += card.value - 10
+//      } else if ((hand.exists(c => c.face == "Ace") && value < 21)) {
+//        for (card <- hand)
+//          value += card.value
+//      }
+//      value
+//    }
+
+      def WinLose(spieler: Integer, dealer: Integer): Int = {
     if (dealer > 21) {
       println("Dealer Bust! You win!")
       GameState.WON.id

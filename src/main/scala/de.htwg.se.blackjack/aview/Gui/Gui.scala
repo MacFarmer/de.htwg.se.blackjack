@@ -82,12 +82,14 @@ object Gui extends JFXApp {
       val pane = new StackPane()
       val stack = new Stack[ImageView]
 
-      val img = new Image("file:image\\background\\greenback.jpg")
+      val img = new Image("file:image\\background\\blackjackStart.jpg")
       val view = new ImageView(img)
       val contentPane = new VBox()
       val buttonStart = new Button("Start Game")
       // Game Starts here after clicking Start Game Button
       buttonStart.onAction = (e: ActionEvent) => {
+        val img2 = new Image("file:image\\background\\blackjacktable.jpg")
+        val view2 = new ImageView(img2)
         controller.generateDeck
         controller.shuffleDeck
         val CardImg = new ImageView(new Image("file:image\\cards\\red_back.png", 86, 110, false, true))
@@ -100,20 +102,31 @@ object Gui extends JFXApp {
         player.addCard(controller.draw())
         val Playerimg1 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
         Playerimg1.layoutX = 500
-        Playerimg1.layoutY = 430
+        Playerimg1.layoutY = 410
         dealer.addCard(controller.draw())
         val Dealerimg1 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
         Dealerimg1.layoutX = 500
         Dealerimg1.layoutY = 80
         player.addCard(controller.draw())
         val Playerimg2 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
-        Playerimg2.layoutX = 560
-        Playerimg2.layoutY = 430
+        Playerimg2.layoutX = 580
+        Playerimg2.layoutY = 410
         dealer.addCard(controller.draw())
-        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
-        Dealerimg2.layoutX = 560
+        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\red_back.png", 86, 110, false, true))
+//        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+        Dealerimg2.layoutX = 580
         Dealerimg2.layoutY = 80
 //        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.last.face + "" + dealer.karte.last.suit + ".png", 88, 62, false, true))
+
+        val Playerimg3 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
+        Playerimg3.layoutX = 660
+        Playerimg3.layoutY = 410
+
+        val Dealerimg3 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+        Dealerimg3.layoutX = 660
+        Dealerimg3.layoutY = 80
+
+
 
         //Player Label
         val playerLabel = new Label(player.name + ": " + player.handValue())
@@ -123,7 +136,7 @@ object Gui extends JFXApp {
 //        val img2 = new ImageView(new Image("file:image\\cards\\" + player.karte.last.face + "" + player.karte.last.suit + ".png", 88, 62, false, true))
 
         //Dealer Label
-        val dealerLabel = new Label(dealer.name + " " + dealer.handValue())
+        val dealerLabel = new Label(dealer.name + ": " + dealer.handValue())
         dealerLabel.layoutY = 35
         dealerLabel.layoutX = 560
 
@@ -150,15 +163,13 @@ object Gui extends JFXApp {
 
         hitButton.onAction = (e: ActionEvent) => {
             if((player.handValue() < 21) && (dealer.handValue() <= 21)) {
-            player.addCard(controller.draw())
-//            hitButton.layoutY = 125
-//            hitButton.layoutX = 560
-              val img2 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 88, 62, false, true))
-              playerLabel.setText(player.name + ": " + player.handValue().toString)
-//              val Playerimg2 = new ImageView(new Image("file:image\\cards\\" + player.karte.last.face + "" + player.karte.last.suit + ".png", 86, 95, false, true))
-              Playerimg2.setImage(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
-              content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
-          } else {
+                player.addCard(controller.draw())
+                val img2 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 88, 62, false, true))
+                playerLabel.setText(player.name + ": " + player.handValue().toString)
+                Playerimg2.setImage(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
+                content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+
+              } else {
               if(player.handValue() > 21 && dealer.handValue() <= 21) {
                 new Alert(AlertType.Information, "Player Bust!").showAndWait()
                 content = Seq(view, menubar,  label, buttonStart)
@@ -175,6 +186,11 @@ object Gui extends JFXApp {
                 new Alert(AlertType.Information, "You have a Tie!").showAndWait()
                 content = Seq(view, menubar,  label, buttonStart)
               }
+              val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+              Dealerimg2.layoutX = 560
+              Dealerimg2.layoutY = 80
+              Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+
               content = Seq(view, menubar,  label, buttonStart)
 
             }
@@ -182,15 +198,20 @@ object Gui extends JFXApp {
 
 
         }
-        content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+        content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
 
         standButton.onAction = (e: ActionEvent) => {
+          val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+          Dealerimg2.layoutX = 560
+          Dealerimg2.layoutY = 80
+          Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
           while(dealer.handValue() < 17) {
             dealer.addCard(controller.draw())
             Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
             dealerLabel.setText(dealer.name + ": " + dealer.handValue())
-            content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
           }
+          content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
 
             if(dealer.handValue() > 21 && player.handValue() <= 21) {
               new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
@@ -209,6 +230,7 @@ object Gui extends JFXApp {
             } else if (player.handValue() == dealer.handValue() && dealer.handValue() <= 21) {
               new Alert(AlertType.Information, "You have a Tie!").showAndWait()
             }
+
           content = Seq(view, menubar,  label, buttonStart)
 
         }
@@ -216,8 +238,8 @@ object Gui extends JFXApp {
       }
 
 
-      buttonStart.layoutX = 550
-      buttonStart.layoutY = 500
+      buttonStart.layoutX = 500
+      buttonStart.layoutY = 300
       val label = new Label("Welcome to Blackjack!") {
         style = "-fx-font-size: 48pt"
         padding = Insets(20)

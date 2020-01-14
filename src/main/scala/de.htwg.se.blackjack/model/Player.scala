@@ -10,8 +10,6 @@ case class Player(name: String) {
     playerstack.push(karte.last)
   }
 
-
-
   def addCard(cards: Card) = {
     karte.push(cards)
     println(name + ":\t\t You are dealt " + cards.toString)
@@ -30,11 +28,13 @@ case class Player(name: String) {
     for (karten <- karte) {
       value += karten.value
     }
+    value
+  }
+
 //    for(karten <- karte)
 //      playerstack.push(karten)
 //    println(name + ":\t\t Your total is " + value)
-    value
-  }
+
 
   def draw(): Card = {
     assert(Deck.count > 0)

@@ -8,5 +8,4 @@ class Hand {
       value += card.value
     value
   }
-
 }

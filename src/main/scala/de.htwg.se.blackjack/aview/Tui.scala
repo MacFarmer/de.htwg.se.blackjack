@@ -13,7 +13,6 @@ class Tui(controller: Controller) extends Observer {
   controller.add(this)
   var status = new Status()
 
-
   // initial cards
   status.generateDeck()
   // shuffle cards
@@ -28,6 +27,7 @@ class Tui(controller: Controller) extends Observer {
         case "y" => return true
         case "n" => return false
         case _ => println("You stupid!")
+          sys.exit(-1)
       }
     }
     true // to make compiler happy
@@ -42,7 +42,7 @@ class Tui(controller: Controller) extends Observer {
         case "s" => return false
         case "undo" => controller.undo()
         case "redo" => controller.redo()
-        case _ => println("You stupid!")
+        case _ => println("Try Again!")
       }
     }
     true // to make compiler happy
@@ -63,18 +63,18 @@ class Tui(controller: Controller) extends Observer {
     dealer.addCard(controller.draw())
     player.addCard(controller.draw())
     dealer.addCard(controller.draw())
-    printf("Player:\t\tYour total is %d\n", player.handValue())
+    printf("Player:\t\t Your total is %d\n", player.handValue())
 
     var want = true
     while (want && player.handValue() < 21) {
-      println("[H]it or [S]tand?: ")
+      println("[h]it or [s]tand?: ")
       var input = readLine()
       if (input.equals("h")) {
         want = true
         player.addCard(controller.draw())
-        printf("Player:\t\tYour total is %d\n", player.handValue())
+        printf("Player:\t\t Your total is %d\n", player.handValue())
         if (player.handValue() > 21) {
-          println("Player:\t\tYou Bust! Sorry you lost right away!")
+          println("Player:\t\t You Bust! Sorry you lost right away!")
           return -1
         }
       } else if(input.equals("s")) {
@@ -82,24 +82,25 @@ class Tui(controller: Controller) extends Observer {
       } else if(input.equals("undo")) {
         player.takeCardAway()
         println(player.name + player.karte.reverse)
-        printf("Player:\t\tYour total is %d\n", player.handValue())
+        printf("Player:\t\t Your total is %d\n", player.handValue())
       } else if (input.equals("redo")) {
         player.returnCard()
-        printf("Player:\t\tYour total is %d\n", player.handValue())
+        printf("Player:\t\t Your total is %d\n", player.handValue())
       }
     }
     while (dealer.handValue() < 17) {
       dealer.addCard(controller.draw())
     }
 
-    printf("Dealer:\t\tThe dealer's total is %d\n", dealer.handValue())
+    printf("Dealer:\t\t The dealer's total is %d\n", dealer.handValue())
 
     // summary
-    println("Summary:\n")
+    println("--------------------------------")
+    println("Summary:")
     val player_total = player.handValue()
     val dealer_total = dealer.handValue()
-    printf("\nPlayer:\t\tYour total is %d\n", player_total)
-    printf("Dealer:\t\tThe dealer's total is %d\n", dealer_total)
+    printf("\nPlayer:\t\t Your total is %d\n", player_total)
+    printf("Dealer:\t\t The dealer's total is %d\n", dealer_total)
 
     status.WinLose(player_total, dealer_total)
   }

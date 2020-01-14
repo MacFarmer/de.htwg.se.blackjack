@@ -13,7 +13,7 @@ class TuiSpec extends WordSpec with Matchers {
       tui.askYesNo("y") should not be(true)
       tui.askYesNo("n") should not be(false)
     }
-    "hvae a Method to ask if Hit or Stand" in {
+    "have a Method to ask if Hit or Stand" in {
       tui.HitStand("h") should be(true)
       tui.HitStand("s") should be(false)
     }
