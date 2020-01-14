@@ -1,7 +1,6 @@
 package de.htwg.se.blackjack.model
 
 import javax.swing.ImageIcon
-
 import scala.swing.Dialog
 
 case class Card(val face: String, val suit: String) {

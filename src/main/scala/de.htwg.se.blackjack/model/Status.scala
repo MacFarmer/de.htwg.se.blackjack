@@ -47,7 +47,7 @@ class Status {
     if (dealer > 21) {
       println("Dealer Bust! You win!")
       GameState.LOST.id
-    } else if (spieler > dealer) {
+    } else if (spieler > dealer && spieler >= 21) {
       println("You win!")
       GameState.WON.id
     } else if (spieler < dealer) {
