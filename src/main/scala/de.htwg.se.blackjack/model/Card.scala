@@ -16,5 +16,4 @@ case class Card(val face: String, val suit: String) {
     case "King" => 10
     case _ => face.toInt
   }
-  def isAce : Boolean = face == "Ace"
 }

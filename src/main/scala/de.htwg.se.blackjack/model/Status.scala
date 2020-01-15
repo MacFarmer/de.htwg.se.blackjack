@@ -1,6 +1,7 @@
 package de.htwg.se.blackjack.model
 
 import de.htwg.se.blackjack.controller.GameState
+import de.htwg.se.blackjack.model.Card
 import javax.swing.ImageIcon
 
 import scala.io.StdIn.readLine
@@ -41,6 +42,10 @@ class Status {
       value += card.value
     value
   }
+
+//  def isAce(cards : Card): Boolean = {
+//    cards.face == "Ace"
+//  }
 
 //    def handValue(hand: Array[Card]): Int = {
 //      var value = 0
