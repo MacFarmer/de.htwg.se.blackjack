@@ -3,6 +3,7 @@ package de.htwg.se.blackjack.aview.Gui
 import de.htwg.se.blackjack.controller.Controller
 import de.htwg.se.blackjack.model.{Card, Player, Status}
 import javafx.event.ActionEvent
+import scalafx.scene.control.Button
 import scalafx.Includes.handle
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -10,6 +11,7 @@ import scalafx.geometry.Insets
 import scalafx.scene.Scene
 import scalafx.scene.control.Alert.AlertType
 import scalafx.scene.control._
+import scalafx.scene.paint.Color._
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.layout.{StackPane, VBox}
 import scalafx.scene.paint.Color.Black
@@ -112,15 +114,19 @@ object Gui extends JFXApp {
         Playerimg2.layoutX = 580
         Playerimg2.layoutY = 410
         dealer.addCard(controller.draw())
-        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\red_back.png", 86, 110, false, true))
+        val HiddenCard = new ImageView(new Image("file:image\\cards\\red_back.png", 86, 110, false, true))
         //        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
-        Dealerimg2.layoutX = 580
-        Dealerimg2.layoutY = 80
+        HiddenCard.layoutX = 580
+        HiddenCard.layoutY = 80
         //        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.last.face + "" + dealer.karte.last.suit + ".png", 88, 62, false, true))
 
         val Playerimg3 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
         Playerimg3.layoutX = 660
         Playerimg3.layoutY = 410
+
+        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+        Dealerimg2.layoutX = 660
+        Dealerimg2.layoutY = 80
 
         val Dealerimg3 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
         Dealerimg3.layoutX = 660
@@ -139,17 +145,17 @@ object Gui extends JFXApp {
         dealerLabel.layoutY = 35
         dealerLabel.layoutX = 560
 
-        val dealerLabel2 = new Label("Hidden Card!")
-        dealerLabel2.layoutY = 35
-        dealerLabel2.layoutX = 560
+        val hiddenLabel = new Label("Hidden Card!")
+        hiddenLabel.layoutY = 35
+        hiddenLabel.layoutX = 560
 
         //
         val hitButton = new Button("Hit")
-        hitButton.layoutY = 250
+        hitButton.layoutY = 215
         hitButton.layoutX = 530
 
         val standButton = new Button("Stand")
-        standButton.layoutY = 250
+        standButton.layoutY = 215
         standButton.layoutX = 590
 
         // Check if Player is below 21
@@ -170,7 +176,7 @@ object Gui extends JFXApp {
             val img2 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 88, 62, false, true))
             playerLabel.setText(player.name + ": " + player.handValue().toString)
             Playerimg2.setImage(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
-            content = List(view2, menubar, hitButton, standButton, dealerLabel2, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+            content = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
 
           } else {
             if (player.handValue() > 21 && dealer.handValue() <= 21) {
@@ -189,19 +195,59 @@ object Gui extends JFXApp {
               new Alert(AlertType.Information, "You have a Tie!").showAndWait()
               content = Seq(view, menubar, label, buttonStart)
             }
-            val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
-            Dealerimg2.layoutX = 580
-            Dealerimg2.layoutY = 80
-            Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
-
-            content = Seq(view, menubar, label, buttonStart)
-
           }
           //              content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
 
         }
 
-        content = List(view2, menubar, hitButton, standButton, dealerLabel2, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+        standButton.onAction = (e: ActionEvent) => {
+          val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+          Dealerimg2.layoutX = 580
+          Dealerimg2.layoutY = 80
+          Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+//            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+          content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+          while (dealer.handValue() < 17) {
+            dealer.addCard(controller.draw())
+            Dealerimg3.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
+            dealerLabel.setText(dealer.name + ": " + dealer.handValue())
+//            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, CardImg)
+          }
+
+            if(dealer.handValue() > 21 && player.handValue() <= 21) {
+              new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
+            } else if ((player.handValue() > dealer.handValue()) && player.handValue() < 21) {
+              new Alert(AlertType.Information, "Player Wins!").showAndWait()
+            } else if (player.handValue() == 21 && dealer.handValue() != 21) {
+              new Alert(AlertType.Information, "Player has a BLACKJACK!").showAndWait()
+            } else if (player.handValue() < dealer.handValue() && dealer.handValue() < 21) {
+              new Alert(AlertType.Information, "Dealer Wins!").showAndWait()
+           } else if (dealer.handValue() == 21 && player.handValue() != 21) {
+              new Alert(AlertType.Information, "Dealer has a BLACKJACK!").showAndWait()
+             // hier kann der Dealer sofort gewinnen, ohne dass seine Karte aufgedeckt wird...
+            } else if (player.handValue() > dealer.handValue() && dealer.handValue() <= 21) {
+              new Alert(AlertType.Information, "Player Bust!").showAndWait()
+            } else if (player.handValue() > dealer.handValue() && dealer.handValue() > 21) {
+              new Alert(AlertType.Information, "Player Bust!").showAndWait()
+            } else if (player.handValue() == dealer.handValue() && dealer.handValue() <= 21) {
+              new Alert(AlertType.Information, "You have a Tie!").showAndWait()
+            }
+
+          content = Seq(view, menubar,  label, buttonStart)
+
+        }
+
+        content = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, CardImg)
+
+//        if (standButton == true && hitButton == false) {
+//          content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, CardImg)
+//        }
+        //else if (Dealerimg2 == Dealerimg3) {
+        //  content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+        //} else if (standButton == true && dealer.handValue() <= 21 || player.handValue() <= 21)
+        //content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+
 
         if (player.handValue() > 21) {
           new Alert(AlertType.Information, "Player Bust!").showAndWait()
@@ -212,46 +258,6 @@ object Gui extends JFXApp {
         } else if (player.handValue() < dealer.handValue() && dealer.handValue() > 21) {
           new Alert(AlertType.Information, "Player Wins!").showAndWait()
           content = Seq(view, menubar, label, buttonStart)
-        }
-
-        standButton.onAction = (e: ActionEvent) => {
-          val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
-          Dealerimg2.layoutX = 580
-          Dealerimg2.layoutY = 80
-          Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
-          while (dealer.handValue() < 17) {
-            dealer.addCard(controller.draw())
-            Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
-            dealerLabel.setText(dealer.name + ": " + dealer.handValue())
-//            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-          }
-
-          if (hitButton == false && standButton == true && dealer.handValue() < 21) {
-            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, CardImg)
-          } else if (Dealerimg2 == Dealerimg3) {
-            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-          } else {
-          content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-          }
-
-            if(dealer.handValue() > 21 && player.handValue() <= 21) {
-              new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
-            } else if ((player.handValue() > dealer.handValue()) && player.handValue() < 21) {
-              new Alert(AlertType.Information, "Player Wins!").showAndWait()
-            } else if (player.handValue() == 21 && dealer.handValue() != 21) {
-              new Alert(AlertType.Information, "Player has a BLACKJACK!").showAndWait()
-            } else if (player.handValue() < dealer.handValue() && dealer.handValue() < 21) {
-              new Alert(AlertType.Information, "Dealer Win!").showAndWait()
-            } else if (dealer.handValue() == 21 && player.handValue() != 21) {
-              new Alert(AlertType.Information, "Dealer has a BLACKJACK!").showAndWait()
-            } else if (player.handValue() > dealer.handValue() && player.handValue() > 21) {
-              new Alert(AlertType.Information, "Player Bust!").showAndWait()
-            } else if (player.handValue() == dealer.handValue() && dealer.handValue() <= 21) {
-              new Alert(AlertType.Information, "You have a Tie!").showAndWait()
-            }
-
-          content = Seq(view, menubar,  label, buttonStart)
-
         }
 
       }
