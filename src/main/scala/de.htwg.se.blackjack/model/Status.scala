@@ -1,7 +1,7 @@
 package de.htwg.se.blackjack.model
 
 import de.htwg.se.blackjack.controller.GameState
-import de.htwg.se.blackjack.model.Card
+import de.htwg.se.blackjack.model.CardFactory
 import javax.swing.ImageIcon
 
 import scala.io.StdIn.readLine
@@ -13,7 +13,7 @@ class Status {
     var i = 0
     for (suit <- Deck.Suits) {
       for (face <- Deck.Faces) {
-        Deck.cards(i) = new Card(face, suit)
+        Deck.cards(i) = new CardFactory(face, suit)
         i += 1
       }
     }
@@ -30,21 +30,21 @@ class Status {
     }
   }
 
-  def draw(): Card = {
+  def draw(): CardFactory = {
     assert(Deck.count > 0)
     Deck.count -= 1
     Deck.cards(Deck.count)
   }
 
-  def handValue(hand: Array[Card]): Int = {
+  def handValue(hand: Array[CardFactory]): Int = {
     var value = 0
     for (card <- hand)
-      value += card.value
+      value += card.apply(value)
     value
   }
 
-//  def isAce(cards : Card): Boolean = {
-//    cards.face == "Ace"
+// def isAce(cards : Card): Boolean = {
+//   cards.face == "Ace"
 //  }
 
 //    def handValue(hand: Array[Card]): Int = {
@@ -62,7 +62,7 @@ class Status {
 //      value
 //    }
 
-      def WinLose(spieler: Integer, dealer: Integer): Int = {
+  def WinLose(spieler: Integer, dealer: Integer): Int = {
     if (dealer > 21) {
       println("Dealer Bust! You win!")
       GameState.WON.id

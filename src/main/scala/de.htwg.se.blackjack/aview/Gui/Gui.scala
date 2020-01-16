@@ -1,7 +1,7 @@
 package de.htwg.se.blackjack.aview.Gui
 
 import de.htwg.se.blackjack.controller.Controller
-import de.htwg.se.blackjack.model.{Card, Player, Status}
+import de.htwg.se.blackjack.model.{CardFactory, Player, Status}
 import javafx.event.ActionEvent
 import scalafx.scene.control.Button
 import scalafx.Includes.handle
@@ -21,8 +21,8 @@ import scala.collection.mutable.Stack
 object Gui extends JFXApp {
   val status = new Status
   val controller = new Controller(status)
-  var dealerStack = Stack[Card]()
-  var playerStack = Stack[Card]()
+  var dealerStack = Stack[CardFactory]()
+  var playerStack = Stack[CardFactory]()
   stage = new PrimaryStage {
   val menuPane = new StackPane()
 
@@ -170,14 +170,19 @@ object Gui extends JFXApp {
           content = Seq(view, menubar, label, buttonStart)
         }
 
+        if(player.handValue() > 21) {
+          hitButton.setText("Result")
+        }
+
         hitButton.onAction = (e: ActionEvent) => {
           if ((player.handValue() < 21) && (dealer.handValue() <= 21)) {
             player.addCard(controller.draw())
             val img2 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 88, 62, false, true))
             playerLabel.setText(player.name + ": " + player.handValue().toString)
             Playerimg2.setImage(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
-            content = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
 
+            //pane.children = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+            content = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
           } else {
             if (player.handValue() > 21 && dealer.handValue() <= 21) {
               new Alert(AlertType.Information, "Player Bust!").showAndWait()
@@ -197,8 +202,10 @@ object Gui extends JFXApp {
             }
           }
           //              content = List(view, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
-
+          //content = List(pane)
         }
+        //content = List(pane)
+
 
         standButton.onAction = (e: ActionEvent) => {
           val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
@@ -282,7 +289,7 @@ object Gui extends JFXApp {
   }
 
 
-  def openImage(hand: Card) = {
+  def openImage(hand: CardFactory) = {
     val img = new ImageView(new Image("file:image\\cards\\" + hand.face + "" + hand.suit + ".png", 88, 62, false, true))
   }
 }

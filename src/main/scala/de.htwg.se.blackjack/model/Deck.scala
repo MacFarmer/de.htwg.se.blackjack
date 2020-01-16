@@ -1,7 +1,7 @@
 package de.htwg.se.blackjack.model
 
 object Deck {
-   val cards = new Array[Card](52)
+   val cards = new Array[CardFactory](52)
    var count = 52
 
 

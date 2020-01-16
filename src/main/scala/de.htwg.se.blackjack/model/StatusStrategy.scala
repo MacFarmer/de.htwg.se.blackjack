@@ -10,7 +10,7 @@ class StatusStrategy {
     var i = 0
     for (suit <- deck.Suits) {
       for (face <- deck.Faces) {
-        deck.cards(i) = new Card(face, suit)
+        deck.cardsSingelton(i) = new CardFactory(face, suit)
         i += 1
       }
     }
@@ -20,22 +20,22 @@ class StatusStrategy {
     for (i <- 1 to 52) {
       // 0..i-2 already shuffled
       val j = (math.random * i).toInt
-      val cj = deck.cards(j)
-      deck.cards(j) = deck.cards(i-1)
-      deck.cards(i-1) = cj
+      val cj = deck.cardsSingelton(j)
+      deck.cardsSingelton(j) = deck.cardsSingelton(i-1)
+      deck.cardsSingelton(i-1) = cj
     }
   }
 
-  def draw(): Card = {
+  def draw(): CardFactory = {
     assert(DeckSingleton.count > 0)
     deck.count -= 1
-    deck.cards(deck.count)
+    deck.cardsSingelton(deck.count)
   }
 
-  def handValue(hand: Array[Card]): Int = {
+  def handValue(hand: Array[CardFactory]): Int = {
     var value = 0
     for (card <- hand)
-      value += card.value
+      value += card.apply(value)
     value
   }
 }

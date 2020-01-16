@@ -30,7 +30,7 @@ object BlackJack {
     println("Welcome to Blackjack!")
     while(true) {
       tui.gameStart()
-      println("---Wanna play another Game? Press [y]es or [n]o! ---")
+      println("--- Wanna play another Game? Press [y]es or [n]o! ---")
       if(!tui.askYesNo(readLine()))
         return
     }

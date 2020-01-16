@@ -1,7 +1,7 @@
 package de.htwg.se.blackjack.controller
 
 import de.htwg.se.blackjack.aview.Tui
-import de.htwg.se.blackjack.model.{Card, Player, Status}
+import de.htwg.se.blackjack.model.{CardFactory, Player, Status}
 import de.htwg.se.blackjack.util.Command
 
 import scala.collection.mutable.Stack

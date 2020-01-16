@@ -3,14 +3,14 @@ package de.htwg.se.blackjack.model
 import scala.collection.mutable.Stack
 
 case class Player(name: String) {
-  var karte = Stack[Card]()
-  var playerstack = Stack[Card]()
+  var karte = Stack[CardFactory]()
+  var playerstack = Stack[CardFactory]()
 
-  def stack(): Stack[Card] = {
+  def stack(): Stack[CardFactory] = {
     playerstack.push(karte.last)
   }
 
-  def addCard(cards: Card) = {
+  def addCard(cards: CardFactory) = {
     karte.push(cards)
     println(name + ":\t\t You are dealt " + cards.toString)
   }
@@ -26,7 +26,7 @@ case class Player(name: String) {
   def handValue(): Int = {
     var value = 0
     for (karten <- karte) {
-      value += karten.value
+      value += karten.apply(value)
     }
     value
   }
@@ -36,7 +36,7 @@ case class Player(name: String) {
 //    println(name + ":\t\t Your total is " + value)
 
 
-  def draw(): Card = {
+  def draw(): CardFactory = {
     assert(Deck.count > 0)
     Deck.count -= 1
     Deck.cards(Deck.count)

@@ -2,7 +2,7 @@ package de.htwg.se.blackjack.aview
 
 import de.htwg.se.blackjack.util.{Observable, Observer}
 import de.htwg.se.blackjack.controller.Controller
-import de.htwg.se.blackjack.model.{Card, Player, Status}
+import de.htwg.se.blackjack.model.{CardFactory, Player, Status}
 
 import scala.collection.mutable.Stack
 import scala.io.StdIn._
@@ -48,7 +48,7 @@ class Tui(controller: Controller) extends Observer {
     true // to make compiler happy
   }
 
-  def processInput(input: String): Card = {
+  def processInput(input: String): CardFactory = {
     input match {
       case "h" => controller.draw()
     }
@@ -81,10 +81,11 @@ class Tui(controller: Controller) extends Observer {
         want = false
       } else if(input.equals("undo")) {
         player.takeCardAway()
-        println(player.name + player.karte.reverse)
+        println("Taken Card was: " + player.playerstack.top)
         printf("Player:\t\t Your total is %d\n", player.handValue())
       } else if (input.equals("redo")) {
         player.returnCard()
+        println("Given Card was: " + player.karte.top)
         printf("Player:\t\t Your total is %d\n", player.handValue())
       }
     }

@@ -4,10 +4,10 @@ import org.scalatest.{Matchers, WordSpec}
 
 class CardSpec extends WordSpec with Matchers {
   "A Card" when { "new" should {
-    val card1 = new Card("Diamonds", "8")
-    val card2 = new Card("Hearts", "2")
-    val card3 = new Card("Spades", "4")
-    val card4 = new Card("Clubs", "3")
+    val card1 = new CardFactory("Diamonds", "8")
+    val card2 = new CardFactory("Hearts", "2")
+    val card3 = new CardFactory("Spades", "4")
+    val card4 = new CardFactory("Clubs", "3")
     //val card5 = new Card("Hearts", "Jack")
     "have a face" in {
       card1.face should be("Diamonds")

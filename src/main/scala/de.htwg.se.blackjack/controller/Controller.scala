@@ -1,6 +1,6 @@
 package de.htwg.se.blackjack.controller
 
-import de.htwg.se.blackjack.model.{Card, Status}
+import de.htwg.se.blackjack.model.{CardFactory, Status}
 import de.htwg.se.blackjack.util.{Observable, Observer, UndoManager}
 
 class Controller(var status: Status) extends Observable with ControllerInterface {
@@ -17,12 +17,12 @@ class Controller(var status: Status) extends Observable with ControllerInterface
     notifyObservers
   }
 
-  def handValue(hand: Array[Card]) = {
+  def handValue(hand: Array[CardFactory]) = {
     notifyObservers
     status.handValue(hand)
   }
 
-  def draw(): Card = {
+  def draw(): CardFactory = {
     notifyObservers
     status.draw()
   }
