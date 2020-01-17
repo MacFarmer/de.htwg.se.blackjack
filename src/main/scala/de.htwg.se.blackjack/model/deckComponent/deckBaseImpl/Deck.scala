@@ -1,4 +1,6 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.deckComponent.deckBaseImpl
+
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 
 object Deck {
    val cards = new Array[CardFactory](52)

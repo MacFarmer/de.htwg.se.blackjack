@@ -1,5 +1,7 @@
 package de.htwg.se.blackjack.model
 
+import de.htwg.se.blackjack.model.handComponent.handBaseImpl.Hand
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
 import org.scalatest.{Matchers, WordSpec}
 
 class HandSpec extends WordSpec with Matchers {

@@ -1,9 +1,8 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.cardComponent.cardBaseImpl
 
-import javax.swing.ImageIcon
-import scala.swing.Dialog
+import de.htwg.se.blackjack.model.cardComponent.cardInterface
 
-case class CardFactory(val face: String, val suit: String) {
+case class CardFactory(val face: String, val suit: String) extends cardInterface {
   override def toString: String = {
     val a = if (face == "Ace" || face == "8") "an " else "a "
     //Dialog.showMessage(message = null, icon = new ImageIcon("image\\cards\\"+face+suit+".jpg"))

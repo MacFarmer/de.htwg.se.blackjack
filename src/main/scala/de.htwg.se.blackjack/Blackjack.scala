@@ -2,9 +2,12 @@
 // BlackJack Game as a compiled application
 // --------------------------------------------------------------------
 
+import com.google.inject.Guice
+import de.htwg.se.blackjack.BlackjackModule
 import de.htwg.se.blackjack.aview.Tui
-import de.htwg.se.blackjack.controller.Controller
-import de.htwg.se.blackjack.model.{Deck, Status}
+import de.htwg.se.blackjack.controller.controllerComponent.ControllerInterface
+import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.Status
 
 import scala.io.StdIn.readLine
 
@@ -24,8 +27,10 @@ object BlackJack {
 
 
   def main(args: Array[String]) {
+    val injector = Guice.createInjector(new BlackjackModule)
     val status = new Status
-    val controller = new Controller(status)
+    //val controller = new Controller(status)
+    val controller = injector.getInstance(classOf[ControllerInterface])
     val tui = new Tui(controller)
     println("Welcome to Blackjack!")
     while(true) {

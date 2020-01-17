@@ -1,16 +1,23 @@
 package de.htwg.se.blackjack.aview
 
+import de.htwg.se.blackjack.controller.controllerComponent.ControllerInterface
+import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.blackjack.util.{Observable, Observer}
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.Status
 import de.htwg.se.blackjack.controller.Controller
 import de.htwg.se.blackjack.model.{CardFactory, DealerStrategy, Player, Status}
+---
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
+import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.Status
 
 import scala.collection.mutable.Stack
 import scala.io.StdIn._
 
 
 
-class Tui(controller: Controller) extends Observer {
-  controller.add(this)
+class Tui(controller: ControllerInterface) extends Observer {
+  //controller.add(this)
   var status = new Status()
 
   // initial cards

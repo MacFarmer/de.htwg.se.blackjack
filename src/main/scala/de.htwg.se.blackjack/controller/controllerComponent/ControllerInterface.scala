@@ -1,6 +1,6 @@
-package de.htwg.se.blackjack.controller
+package de.htwg.se.blackjack.controller.controllerComponent
 
-import de.htwg.se.blackjack.model.CardFactory
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 
 trait ControllerInterface {
   def shuffleDeck:Any

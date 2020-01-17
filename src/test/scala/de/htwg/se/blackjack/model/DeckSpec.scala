@@ -1,5 +1,7 @@
 package de.htwg.se.blackjack.model
 
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
+import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
 import org.scalatest.{Matchers, WordSpec}
 
 class DeckSpec extends WordSpec with Matchers {

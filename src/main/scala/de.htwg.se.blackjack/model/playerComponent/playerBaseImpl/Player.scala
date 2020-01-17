@@ -1,8 +1,12 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.playerComponent.playerBaseImpl
+
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
+import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
+import de.htwg.se.blackjack.model.playerComponent.PlayerInterface
 
 import scala.collection.mutable.Stack
 
-case class Player(name: String) {
+case class Player(name: String) extends PlayerInterface{
   var karte = Stack[CardFactory]()
   var playerstack = Stack[CardFactory]()
 
