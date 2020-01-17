@@ -1,6 +1,7 @@
 package de.htwg.se.blackjack.controller
 
-import de.htwg.se.blackjack.model.{CardFactory, Status}
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.Status
 import de.htwg.se.blackjack.util.{Observable, Observer, UndoManager}
 
 class Controller(var status: Status) extends Observable with ControllerInterface {

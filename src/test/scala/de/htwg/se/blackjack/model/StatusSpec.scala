@@ -1,5 +1,6 @@
 package de.htwg.se.blackjack.model
 
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.Status
 import org.scalatest.{Matchers, WordSpec}
 
 class StatusSpec extends WordSpec with Matchers {
