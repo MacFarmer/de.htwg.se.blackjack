@@ -3,7 +3,7 @@ package de.htwg.se.blackjack.aview.Gui
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player
-import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.Status
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.{Status, StatusStrategy}
 import javafx.event.ActionEvent
 import scalafx.scene.control.Button
 import scalafx.Includes.handle
@@ -21,7 +21,7 @@ import scalafx.scene.paint.Color.Black
 import scala.collection.mutable.Stack
 
 object Gui extends JFXApp {
-  val status = new Status
+  val status = new StatusStrategy
   val controller = new Controller(status)
   var dealerStack = Stack[CardFactory]()
   var playerStack = Stack[CardFactory]()
