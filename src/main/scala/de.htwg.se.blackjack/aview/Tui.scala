@@ -2,7 +2,7 @@ package de.htwg.se.blackjack.aview
 
 import de.htwg.se.blackjack.util.{Observable, Observer}
 import de.htwg.se.blackjack.controller.Controller
-import de.htwg.se.blackjack.model.{CardFactory, Player, Status}
+import de.htwg.se.blackjack.model.{CardFactory, DealerStrategy, Player, Status}
 
 import scala.collection.mutable.Stack
 import scala.io.StdIn._
@@ -57,12 +57,14 @@ class Tui(controller: Controller) extends Observer {
   def gameStart(): Int = {
 
     var player = Player("Player")
-    var dealer = Player("Dealer")
+    //var dealer = Player("Dealer")
 
     player.addCard(controller.draw())
-    dealer.addCard(controller.draw())
+    DealerStrategy.takeCard
+    //dealer.addCard(controller.draw())
     player.addCard(controller.draw())
-    dealer.addCard(controller.draw())
+    //DealerStrategy.takeCard
+   // dealer.addCard(controller.draw())
     printf("Player:\t\t Your total is %d\n", player.handValue())
 
     var want = true
@@ -89,17 +91,20 @@ class Tui(controller: Controller) extends Observer {
         printf("Player:\t\t Your total is %d\n", player.handValue())
       }
     }
-    while (dealer.handValue() < 17) {
-      dealer.addCard(controller.draw())
-    }
 
-    printf("Dealer:\t\t The dealer's total is %d\n", dealer.handValue())
+    DealerStrategy.strategy
+
+//    while (dealer.handValue() < 17) {
+//      dealer.addCard(controller.draw())
+//    }
+
+    printf("Dealer:\t\t The dealer's total is %d\n", DealerStrategy.dealer.handValue())
 
     // summary
     println("--------------------------------")
     println("Summary:")
     val player_total = player.handValue()
-    val dealer_total = dealer.handValue()
+    val dealer_total = DealerStrategy.dealer.handValue()
     printf("\nPlayer:\t\t Your total is %d\n", player_total)
     printf("Dealer:\t\t The dealer's total is %d\n", dealer_total)
 
