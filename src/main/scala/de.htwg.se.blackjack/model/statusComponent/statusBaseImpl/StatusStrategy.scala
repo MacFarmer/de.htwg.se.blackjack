@@ -1,8 +1,11 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.statusComponent.statusBaseImpl
 
-import scala.io.StdIn.readLine
+import de.htwg.se.blackjack.controller.GameState
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
+import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.DeckSingleton
+import de.htwg.se.blackjack.model.statusComponent.StatusInterface
 
-class StatusStrategy {
+class StatusStrategy extends StatusInterface {
 
   var deck = DeckSingleton
 
@@ -37,5 +40,30 @@ class StatusStrategy {
     for (card <- hand)
       value += card.apply(value)
     value
+  }
+
+  def WinLose(spieler: Integer, dealer: Integer): Int = {
+    if (dealer > 21) {
+      println("Dealer Bust! You win!")
+      GameState.WON.id
+    } else if (spieler > 21) {
+      println("You Bust! Dealer wins!")
+      GameState.LOST.id
+    } else if (spieler > dealer && spieler <= 21) {
+      println("You win!")
+      GameState.WON.id
+    } else if (spieler < dealer && dealer <= 21) {
+      println("You lost!")
+      GameState.LOST.id
+    } else if (spieler == 21 && dealer != 21) {
+      println("You have a Blackjack!!!")
+      GameState.WON.id
+    } else if (dealer == 21 && spieler != 21) {
+      println("Dealer has a Blackjack!!!")
+      GameState.LOST.id
+    } else {
+      println("You have a tie!")
+      GameState.PUSH.id
+    }
   }
 }

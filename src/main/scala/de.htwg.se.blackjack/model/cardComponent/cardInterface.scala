@@ -1,5 +1,7 @@
 package de.htwg.se.blackjack.model.cardComponent
 
-class cardInterface {
+trait cardInterface {
+
+  def apply(value: Int): Int
 
 }

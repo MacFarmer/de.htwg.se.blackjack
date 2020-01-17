@@ -1,12 +1,16 @@
-package de.htwg.se.blackjack.controller
+package de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl
 
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.blackjack.BlackjackModule
+import de.htwg.se.blackjack.controller.controllerComponent.ControllerInterface
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.Status
-import de.htwg.se.blackjack.util.{Observable, Observer, UndoManager}
+import de.htwg.se.blackjack.util.{Observable, UndoManager}
 
-class Controller(var status: Status) extends Observable with ControllerInterface {
+class Controller @Inject() (var status: Status) extends Observable with ControllerInterface {
   //var status: Status
   private val undoManager = new UndoManager
+  val injector = Guice.createInjector(new BlackjackModule)
 
   def shuffleDeck = {
     status.shuffleDeck()

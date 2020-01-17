@@ -1,11 +1,8 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.statusComponent.statusBaseImpl
 
 import de.htwg.se.blackjack.controller.GameState
-import de.htwg.se.blackjack.model.CardFactory
-import javax.swing.ImageIcon
-
-import scala.io.StdIn.readLine
-import scala.swing.{Dialog, Image}
+import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
+import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
 
 class Status {
 
