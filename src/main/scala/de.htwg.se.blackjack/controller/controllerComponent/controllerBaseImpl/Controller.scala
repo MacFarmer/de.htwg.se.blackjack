@@ -10,7 +10,7 @@ import de.htwg.se.blackjack.util.{Observable, UndoManager}
 class Controller @Inject() (var status: StatusStrategy) extends Observable with ControllerInterface {
   //var status: Status
   private val undoManager = new UndoManager
-  val injector = Guice.createInjector(new BlackjackModule)
+  //val injector = Guice.createInjector(new BlackjackModule)
 
   def shuffleDeck = {
     status.shuffleDeck()
