@@ -23,5 +23,7 @@ trait PlayerInterface {
   //    println(name + ":\t\t Your total is " + value)
 
 
+  def getPlayerStack(): Stack[CardFactory]
+
   def draw(): CardFactory
 }

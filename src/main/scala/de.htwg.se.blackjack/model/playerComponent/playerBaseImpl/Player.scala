@@ -37,6 +37,11 @@ case class Player(name: String) extends PlayerInterface{
     value
   }
 
+  def getPlayerStack() = {
+    playerstack
+  }
+
+
 //    for(karten <- karte)
 //      playerstack.push(karten)
 //    println(name + ":\t\t Your total is " + value)

@@ -42,5 +42,9 @@ class Controller @Inject() (var status: StatusStrategy) extends Observable with 
     notifyObservers
   }
 
+  def save: Unit = {
+
+  }
+
   //override def toString: String = status.toString
 }
