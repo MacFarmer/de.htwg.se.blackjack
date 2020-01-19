@@ -4,15 +4,18 @@ import com.google.inject.{Guice, Inject, Injector}
 import de.htwg.se.blackjack.BlackjackModule
 import de.htwg.se.blackjack.controller.controllerComponent.ControllerInterface
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
-import de.htwg.se.blackjack.model.fileIoComponent.FileIOInterface
 import de.htwg.se.blackjack.model.playerComponent.PlayerInterface
 import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
 import de.htwg.se.blackjack.util.{Observable, UndoManager}
+import de.htwg.se.blackjack.controller.GameState
+import de.htwg.se.blackjack.controller.GameState.GameState
+import de.htwg.se.blackjack.model.fileIoComponent.FileIOInterface
+import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player
+
+import scala.xml.Elem
 
 class Controller @Inject() (var status: StatusStrategy) extends Observable with ControllerInterface {
-  //var status: Status
   private val undoManager = new UndoManager
-  //val injector = Guice.createInjector(new BlackjackModule)
 
   def shuffleDeck: Unit = {
     status.shuffleDeck()
@@ -24,7 +27,7 @@ class Controller @Inject() (var status: StatusStrategy) extends Observable with 
     notifyObservers
   }
 
-  def handValue(hand: Array[CardFactory]): Int = {
+  def handValue(hand: List[CardFactory]): Int = {
     notifyObservers
     status.handValue(hand)
   }
@@ -44,9 +47,11 @@ class Controller @Inject() (var status: StatusStrategy) extends Observable with 
     notifyObservers
   }
 
-  def save: Unit = {
+  val injector = Guice.createInjector(new BlackjackModule)
+  val fileIO = injector.getInstance(classOf[FileIOInterface])
 
-  }
+  def save: Unit = fileIO.save(status)
 
   //override def toString: String = status.toString
+
 }

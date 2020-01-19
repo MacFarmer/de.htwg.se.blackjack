@@ -99,7 +99,7 @@ class Tui(controller: ControllerInterface) extends Observer {
         println("Given Card was: " + player.karte.top)
         printf("Player:\t\t Your total is %d\n", player.handValue())
       } else if (input.equals("safe")) {
-        controller.save()
+        controller.save
         printf("Saved Game!")
       }
     }

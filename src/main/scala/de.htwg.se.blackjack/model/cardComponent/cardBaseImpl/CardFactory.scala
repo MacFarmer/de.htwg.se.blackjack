@@ -23,4 +23,8 @@ case class CardFactory(val face: String, val suit: String) extends cardInterface
     case "King" => 10
     case _ => face.toInt
   }
+
+//  def toXml(c: CardFactory) = {
+//    <cards suit={c.suit} face={c.face}> </cards>
+//  }
 }

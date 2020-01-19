@@ -39,7 +39,13 @@ object Gui extends JFXApp {
 //                  content = Seq(view, label, buttonStart)
                   menuPane
                 }
+              },
+            new MenuItem {
+              text = "Save"
+              onAction = (e: ActionEvent) => {
+                controller.save
               }
+            }
             )
           },
           new Menu("Help") {

@@ -57,4 +57,11 @@ case class Player(name: String) extends PlayerInterface{
     name + "s Hand: " + karte
   }
 
+  def toXml = {
+    <player>
+      <name>{name}</name>
+      <value>{handValue()}</value>
+    </player>
+  }
+
 }

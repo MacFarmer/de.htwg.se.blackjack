@@ -4,6 +4,7 @@ import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
 
 import scala.collection.mutable.Stack
+import scala.xml.Elem
 
 trait PlayerInterface {
   def stack(): Stack[CardFactory]
@@ -26,4 +27,8 @@ trait PlayerInterface {
   def getPlayerStack(): Stack[CardFactory]
 
   def draw(): CardFactory
+
+  def toXml(): Elem
+
+
 }

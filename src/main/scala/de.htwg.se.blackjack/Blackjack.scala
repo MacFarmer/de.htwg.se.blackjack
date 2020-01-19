@@ -8,6 +8,8 @@ import de.htwg.se.blackjack.aview.Tui
 import de.htwg.se.blackjack.controller.controllerComponent.ControllerInterface
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.{Status, StatusStrategy}
+import de.htwg.se.blackjack.model.fileIoComponent.FileIOInterface
+
 
 import scala.io.StdIn.readLine
 
@@ -28,9 +30,9 @@ object BlackJack {
 
   def main(args: Array[String]) : Unit ={
     val injector = Guice.createInjector(new BlackjackModule)
-    val status = new StatusStrategy
-    //val controller = new Controller(status)
     val controller = injector.getInstance(classOf[ControllerInterface])
+    val status = new StatusStrategy
+ //   val controller = new Controller(status)
     val tui = new Tui(controller)
     println("Welcome to Blackjack!")
     while(true) {
