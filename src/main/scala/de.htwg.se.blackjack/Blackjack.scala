@@ -26,7 +26,7 @@ object BlackJack {
 
 
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]) : Unit ={
     val injector = Guice.createInjector(new BlackjackModule)
     val status = new StatusStrategy
     //val controller = new Controller(status)

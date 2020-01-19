@@ -117,10 +117,8 @@ object Gui extends JFXApp {
         Playerimg2.layoutY = 410
         dealer.addCard(controller.draw())
         val HiddenCard = new ImageView(new Image("file:image\\cards\\red_back.png", 86, 110, false, true))
-        //        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
         HiddenCard.layoutX = 580
         HiddenCard.layoutY = 80
-        //        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.last.face + "" + dealer.karte.last.suit + ".png", 88, 62, false, true))
 
         val Playerimg3 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
         Playerimg3.layoutX = 660
@@ -140,13 +138,12 @@ object Gui extends JFXApp {
         playerLabel.layoutY = 550
         playerLabel.layoutX = 560
 
-        //        val img2 = new ImageView(new Image("file:image\\cards\\" + player.karte.last.face + "" + player.karte.last.suit + ".png", 88, 62, false, true))
-
         //Dealer Label
         val dealerLabel = new Label(dealer.name + ": " + dealer.handValue())
         dealerLabel.layoutY = 35
         dealerLabel.layoutX = 560
 
+        // Hidden Card till pressed Stand
         val hiddenLabel = new Label("Hidden Card!")
         hiddenLabel.layoutY = 35
         hiddenLabel.layoutX = 560
@@ -161,7 +158,6 @@ object Gui extends JFXApp {
         standButton.layoutX = 590
 
         // Check if Player is below 21
-
         if (dealer.handValue() > 21) {
           new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
           content = Seq(view, menubar, label, buttonStart)
@@ -280,11 +276,6 @@ object Gui extends JFXApp {
       }
       label.layoutX = 250
       label.layoutY = 150
-      //content = Seq(view, menubar, label, buttonStart)
-
-      //val img = new Image("")
-      //val view = new ImageView(img, img)
-      //view.delegate
       pane.children = List(menubar, view, label)
       content = Seq(view, menubar,  label, buttonStart)
     }
