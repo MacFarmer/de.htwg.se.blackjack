@@ -6,4 +6,5 @@ trait Command {
   def undoStep(): Unit
 
   def redoStep(): Unit
+
 }

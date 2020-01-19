@@ -7,7 +7,7 @@ import de.htwg.se.blackjack.model.statusComponent.StatusInterface
 
 trait FileIOInterface {
 
-  def load: PlayerInterface
-  def save(player: PlayerInterface): Unit
+  def load: StatusInterface
+  def save(status: StatusInterface): String
 
 }

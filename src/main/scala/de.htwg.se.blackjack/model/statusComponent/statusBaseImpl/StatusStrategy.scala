@@ -3,6 +3,7 @@ package de.htwg.se.blackjack.model.statusComponent.statusBaseImpl
 import de.htwg.se.blackjack.controller.GameState
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.DeckSingleton
+import de.htwg.se.blackjack.model.playerComponent.PlayerInterface
 import de.htwg.se.blackjack.model.statusComponent.StatusInterface
 
 class StatusStrategy extends StatusInterface {
