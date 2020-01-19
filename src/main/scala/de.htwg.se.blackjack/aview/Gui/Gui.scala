@@ -35,7 +35,7 @@ object Gui extends JFXApp {
             items = List(
               new MenuItem {
                 text = "New Game"
-                onAction = handle {
+                onAction = (e: ActionEvent) => {
 //                  content = Seq(view, label, buttonStart)
                   menuPane
                 }

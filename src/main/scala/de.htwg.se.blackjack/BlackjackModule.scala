@@ -16,6 +16,6 @@ class BlackjackModule extends AbstractModule with ScalaModule{
     bind[HandInterface].to[model.handComponent.handBaseImpl.Hand]
     bind[StatusInterface].to[model.statusComponent.statusBaseImpl.StatusStrategy]
    // bind[DeckInterface].to[model.deckComponent.deckBaseImpl.Deck]
-    //bind[PlayerInterface].to[model.playerComponent.playerBaseImpl.Player]
+    bind[PlayerInterface].to[model.playerComponent.playerBaseImpl.Player]
   }
 }

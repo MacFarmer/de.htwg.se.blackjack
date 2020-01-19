@@ -16,6 +16,8 @@ trait PlayerInterface {
 
   def handValue(): Int
 
+  def getName(): String
+
   //    for(karten <- karte)
   //      playerstack.push(karten)
   //    println(name + ":\t\t Your total is " + value)

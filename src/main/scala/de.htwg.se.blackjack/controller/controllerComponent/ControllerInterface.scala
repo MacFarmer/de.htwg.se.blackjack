@@ -9,6 +9,6 @@ trait ControllerInterface {
   def draw():CardFactory
   def undo():Unit
   def redo():Unit
-  def load():Unit
-  def save():Unit
+//  def load():Unit
+//  def save():Unit
 }
