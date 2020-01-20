@@ -5,6 +5,7 @@ import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
 import de.htwg.se.blackjack.model.playerComponent.PlayerInterface
 
 import scala.collection.mutable.Stack
+import scala.xml.Elem
 
 case class Player(name: String) extends PlayerInterface{
   var karte = Stack[CardFactory]()
@@ -55,13 +56,6 @@ case class Player(name: String) extends PlayerInterface{
 
   override def toString: String = {
     name + "s Hand: " + karte
-  }
-
-  def toXml = {
-    <player>
-      <name>{name}</name>
-      <value>{handValue()}</value>
-    </player>
   }
 
 }

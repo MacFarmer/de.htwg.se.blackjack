@@ -28,7 +28,5 @@ trait PlayerInterface {
 
   def draw(): CardFactory
 
-  def toXml(): Elem
-
 
 }

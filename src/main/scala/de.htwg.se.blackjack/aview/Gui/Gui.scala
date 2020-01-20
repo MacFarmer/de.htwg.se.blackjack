@@ -43,7 +43,7 @@ object Gui extends JFXApp {
             new MenuItem {
               text = "Save"
               onAction = (e: ActionEvent) => {
-                //controller.save
+//                controller.save()
               }
             }
             )
@@ -251,15 +251,6 @@ object Gui extends JFXApp {
 
         content = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, CardImg)
 
-//        if (standButton == true && hitButton == false) {
-//          content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, CardImg)
-//        }
-        //else if (Dealerimg2 == Dealerimg3) {
-        //  content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-        //} else if (standButton == true && dealer.handValue() <= 21 || player.handValue() <= 21)
-        //content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
-
-
         if (player.handValue() > 21) {
           new Alert(AlertType.Information, "Player Bust!").showAndWait()
           content = Seq(view, menubar, label, buttonStart)
@@ -272,7 +263,6 @@ object Gui extends JFXApp {
         }
 
       }
-
 
       buttonStart.layoutX = 500
       buttonStart.layoutY = 300

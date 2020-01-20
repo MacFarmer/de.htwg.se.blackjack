@@ -28,23 +28,22 @@ class FileIO extends FileIOInterface {
     pw.close
   }
 
-//  def statusToXml(status: StatusStrategy) = {
-//    <status>
-//      <player>{status. => playerToXml(p)}</player>
-//      <value>{status.handValue2().toString}</value>
-//     </status>
-//  }
-//  def playerToXml(p: Player): Elem = {
-//    <player>
-//      <name player={p.getName.toString}></name>
-//      <value playervalue={p.handValue().toString}></value>
-//    </player>
-//  }
-  def playerToXmL(player: Player) = {
-  <player>
-    <name player={player.name}></name>
-    <value playerValue={player.handValue().toString}></value>
-  </player>
-}
+  def playerToXmL(player: Player):Elem = {
+    <player>
+      <name player={player.name}></name>
+      <value playerValue={player.handValue().toString}></value>
+      <cards>{}</cards>
+    </player>
+  }
+
+  def stackToXml(stack: Player): Elem = {
+    <stack>
+      {stack.getPlayerStack.map(c => cardToXml(c))}
+    </stack>
+  }
+
+  def cardToXml(c :CardFactory): Elem = {
+    <card suit={c.suit} face={c.face}></card>
+  }
 
 }

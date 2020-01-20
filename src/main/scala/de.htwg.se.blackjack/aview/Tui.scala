@@ -66,14 +66,13 @@ class Tui(controller: ControllerInterface) extends Observer {
   def gameStart(): Int = {
 
     var player = Player("Player")
-    //var dealer = Player("Dealer")
+    var dealer = Player("Dealer")
 
     player.addCard(controller.draw())
-    DealerStrategy.takeCard
-    //dealer.addCard(controller.draw())
-    player.addCard(controller.draw())
     //DealerStrategy.takeCard
-   // dealer.addCard(controller.draw())
+    dealer.addCard(controller.draw())
+    player.addCard(controller.draw())
+    dealer.addCard(controller.draw())
     printf("Player:\t\t Your total is %d\n", player.handValue())
 
     var want = true
@@ -101,26 +100,28 @@ class Tui(controller: ControllerInterface) extends Observer {
       } else if (input.equals("save")) {
         controller.save(player)
         printf("Saved Game!")
+//      } else if (input.equals("save dealer")) {
+//        controller.save(dealer)
+//        printf("Saved Dealer!")
       }
     }
 
-    DealerStrategy.strategy
+//    DealerStrategy.strategy
 
-//    while (dealer.handValue() < 17) {
-//      dealer.addCard(controller.draw())
-//    }
+    while (dealer.handValue() < 17) {
+      dealer.addCard(controller.draw())
+    }
 
-    printf("Dealer:\t\t The dealer's total is %d\n", DealerStrategy.dealer.handValue())
+    printf("Dealer:\t\t The dealer's total is %d\n", dealer.handValue())
 
     // summary
     println("--------------------------------")
     println("Summary:")
     val player_total = player.handValue()
-    val dealer_total = DealerStrategy.dealer.handValue()
+    val dealer_total = dealer.handValue()
     printf("\nPlayer:\t\t Your total is %d\n", player_total)
     printf("Dealer:\t\t The dealer's total is %d\n", dealer_total)
 
-//    controller.save(player)
     status.WinLose(player_total, dealer_total)
   }
 
