@@ -29,10 +29,10 @@ object BlackJack {
 
 
   def main(args: Array[String]) : Unit ={
-    val injector = Guice.createInjector(new BlackjackModule)
-    val controller = injector.getInstance(classOf[ControllerInterface])
+//    val injector = Guice.createInjector(new BlackjackModule)
+//    val controller = injector.getInstance(classOf[ControllerInterface])
     val status = new StatusStrategy
- //   val controller = new Controller(status)
+    val controller = new Controller(status)
     val tui = new Tui(controller)
     println("Welcome to Blackjack!")
     while(true) {

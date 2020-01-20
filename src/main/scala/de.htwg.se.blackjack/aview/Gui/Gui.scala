@@ -43,7 +43,7 @@ object Gui extends JFXApp {
             new MenuItem {
               text = "Save"
               onAction = (e: ActionEvent) => {
-                controller.save
+                //controller.save
               }
             }
             )

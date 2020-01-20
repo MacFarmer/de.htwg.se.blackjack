@@ -1,6 +1,8 @@
 package de.htwg.se.blackjack.controller.controllerComponent
 
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
+import de.htwg.se.blackjack.model.fileIoComponent.FileIOInterface
+import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player
 
 import scala.xml.Elem
 
@@ -12,5 +14,6 @@ trait ControllerInterface {
   def undo():Unit
   def redo():Unit
 //  def load():Unit
-  def save: Unit
+//  def save(): Unit
+def save(player: Player): Unit
 }

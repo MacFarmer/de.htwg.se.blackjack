@@ -98,8 +98,8 @@ class Tui(controller: ControllerInterface) extends Observer {
         player.returnCard()
         println("Given Card was: " + player.karte.top)
         printf("Player:\t\t Your total is %d\n", player.handValue())
-      } else if (input.equals("safe")) {
-        controller.save
+      } else if (input.equals("save")) {
+        controller.save(player)
         printf("Saved Game!")
       }
     }
@@ -120,6 +120,7 @@ class Tui(controller: ControllerInterface) extends Observer {
     printf("\nPlayer:\t\t Your total is %d\n", player_total)
     printf("Dealer:\t\t The dealer's total is %d\n", dealer_total)
 
+//    controller.save(player)
     status.WinLose(player_total, dealer_total)
   }
 
