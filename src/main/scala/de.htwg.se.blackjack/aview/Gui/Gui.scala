@@ -40,7 +40,18 @@ object Gui extends JFXApp {
                   menuPane
                 }
               },
-
+              new MenuItem {
+                text = "Undo"
+                onAction = (e: ActionEvent) => {
+                  controller.undo()
+                }
+              },
+              new MenuItem {
+                text = "Redo"
+                onAction = (e: ActionEvent) => {
+                  controller.redo()
+                }
+              },
             )
           },
           new Menu("Help") {
@@ -188,7 +199,7 @@ object Gui extends JFXApp {
             Playerimg2.setImage(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
 
             //pane.children = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-            content = List(view2, menubar, hitButton, standButton, saveButton, loadButton,hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+            content = List(view2, menubar, hitButton, standButton, saveButton, loadButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
           } else {
             if (player.handValue() > 21 && dealer.handValue() <= 21) {
               new Alert(AlertType.Information, "Player Bust!").showAndWait()
@@ -212,9 +223,14 @@ object Gui extends JFXApp {
         }
         //content = List(pane)
 
-        saveButton.onAction = (ActionEvent) => {
+
+        saveButton.onAction = (e: ActionEvent) => {
           controller.save(player, dealer)
         }
+
+//        loadButton.onAction = (e: ActionEvent) => {
+//          controller.load(player, dealer)
+//        }
 
 
         standButton.onAction = (e: ActionEvent) => {

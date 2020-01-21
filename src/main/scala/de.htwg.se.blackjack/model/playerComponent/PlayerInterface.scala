@@ -17,12 +17,9 @@ trait PlayerInterface {
 
   def handValue(): Int
 
-
-
   //    for(karten <- karte)
   //      playerstack.push(karten)
   //    println(name + ":\t\t Your total is " + value)
-
 
   def getPlayerStack(): Stack[CardFactory]
 
