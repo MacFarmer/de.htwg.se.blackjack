@@ -17,7 +17,7 @@ trait PlayerInterface {
 
   def handValue(): Int
 
-  def getName(): String
+
 
   //    for(karten <- karte)
   //      playerstack.push(karten)

@@ -50,8 +50,9 @@ class Controller @Inject() (var status: StatusStrategy) extends Observable with 
   val injector = Guice.createInjector(new BlackjackModule)
   val fileIO = injector.getInstance(classOf[FileIOInterface])
 
-  def save(player: Player): Unit =  {
-    fileIO.save(player)
+  def save(player: Player, dealer: Player): Unit =  {
+    fileIO.save(player, dealer)
+    println("Game Saved!\n")
   }
 
   //override def toString: String = status.toString

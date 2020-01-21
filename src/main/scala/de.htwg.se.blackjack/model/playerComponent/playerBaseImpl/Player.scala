@@ -15,7 +15,7 @@ case class Player(name: String) extends PlayerInterface{
     playerstack.push(karte.last)
   }
 
-  def getName: String = name
+
 
   def addCard(cards: CardFactory) = {
     karte.push(cards)

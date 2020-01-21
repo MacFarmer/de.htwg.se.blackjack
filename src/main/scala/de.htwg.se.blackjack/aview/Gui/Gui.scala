@@ -40,12 +40,7 @@ object Gui extends JFXApp {
                   menuPane
                 }
               },
-            new MenuItem {
-              text = "Save"
-              onAction = (e: ActionEvent) => {
-//                controller.save()
-              }
-            }
+
             )
           },
           new Menu("Help") {
@@ -137,7 +132,6 @@ object Gui extends JFXApp {
         val Dealerimg3 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
         Dealerimg3.layoutX = 660
         Dealerimg3.layoutY = 80
-
 
         //Player Label
         val playerLabel = new Label(player.name + ": " + player.handValue())

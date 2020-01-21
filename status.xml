@@ -1,1 +1,12 @@
-<stack> </stack>
+<game>
+    <player>
+        <name player="Player"></name>
+        <value playerValue="0"></value>
+        <card playerCards="Stack()"></card>
+    </player>
+    <dealer>
+        <name dealer="Dealer"></name>
+        <value dealerValue="0"></value>
+        <card dealerCards="Stack()"></card>
+    </dealer>
+</game>
