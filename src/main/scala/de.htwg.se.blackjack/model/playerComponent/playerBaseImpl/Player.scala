@@ -32,8 +32,19 @@ case class Player(name: String) extends PlayerInterface{
 
   def handValue(): Int = {
     var value = 0
-    for (karten <- karte) {
-      value += karten.apply(value)
+    if (!isAce()) {
+      for (karten <- karte) {
+        value += karten.apply(value)
+      }
+    } else if (isAce() && value <= 21) {
+      for (karten <- karte) {
+        value += karten.apply(value)
+      }
+    } else if (isAce() && value > 21) {
+      for (karten <- karte) {
+        value += karten.apply(value)
+        value - 10
+      }
     }
     value
   }
@@ -58,4 +69,9 @@ case class Player(name: String) extends PlayerInterface{
     name + "s Hand: " + karte
   }
 
+  def isAce(): Boolean = {
+//    karte.top.face == "Ace"
+//    karte.last.face == "Ace"
+    karte.toString().contains("Ace")
+  }
 }
