@@ -15,10 +15,6 @@ import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
 import scala.xml.{Elem, Node, PrettyPrinter}
 
 class FileIO extends FileIOInterface {
-  //  override def load: PlayerInterface = {
-  //    val file: Elem = scala.xml.XML.loadFile("player.xml")
-  //    val injector = Guice.createInjector(new BlackjackModule)
-  //  }
 
   override def save(player: Player, dealer: Player): Unit = {
     val pw = new PrintWriter((new File("status.xml")))
@@ -27,19 +23,6 @@ class FileIO extends FileIOInterface {
     pw.write(xml)
     pw.close
   }
-  
-
-//  def playerToXmL(player: Player, dealer: Player) = {
-//    <game>
-//      <name player={player.name}></name>
-//      <value playerValue={player.handValue().toString}></value>
-//      <cards>{}</cards>
-//    </game>
-//    <dealer>
-//      <name dealer={dealer.name}></name>
-//      <value dealerValue={dealer.handValue().toString}></value>
-//    </dealer>
-//  }
 
   def playerToXmL(player: Player, dealer: Player) = {
     <game>

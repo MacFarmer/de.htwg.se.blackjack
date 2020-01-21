@@ -1,12 +1,12 @@
 <game>
     <player>
         <name player="Player"></name>
-        <value playerValue="0"></value>
-        <card playerCards="Stack()"></card>
+        <value playerValue="17"></value>
+        <card playerCards="Stack(a Jack of Diamonds, a 7 of Hearts)"></card>
     </player>
     <dealer>
         <name dealer="Dealer"></name>
-        <value dealerValue="0"></value>
-        <card dealerCards="Stack()"></card>
+        <value dealerValue="10"></value>
+        <card dealerCards="Stack(a 7 of Diamonds, a 3 of Diamonds)"></card>
     </dealer>
 </game>
