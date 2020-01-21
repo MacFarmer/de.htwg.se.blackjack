@@ -10,7 +10,6 @@ trait FileIOInterface {
 
 
   //  def load: StatusInterface
-//  def save(status: StatusStrategy): Unit
-def save(player: Player, dealer: Player): Unit
 
+def save(player: Player, dealer: Player): Unit
 }

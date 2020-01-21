@@ -1,0 +1,12 @@
+{
+  "playerData" : {
+    "playerName" : "Player",
+    "playerValue" : 26,
+    "playerCards" : "Stack(an Ace of Spades, a 5 of Clubs, a Queen of Clubs)"
+  },
+  "dealerData" : {
+    "dealerName" : "Dealer",
+    "dealerValue" : 20,
+    "dealerCards" : "Stack(a Jack of Clubs, a 10 of Clubs)"
+  }
+}

@@ -14,6 +14,5 @@ trait ControllerInterface {
   def undo():Unit
   def redo():Unit
 //  def load():Unit
-//  def save(): Unit
 def save(player: Player, dealer: Player): Unit
 }
