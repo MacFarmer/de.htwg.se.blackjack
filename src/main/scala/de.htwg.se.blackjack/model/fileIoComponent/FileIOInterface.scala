@@ -7,9 +7,6 @@ import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
 
 
 trait FileIOInterface {
-
-
-  //  def load: StatusInterface
-
-def save(player: Player, dealer: Player): Unit
+    def load()
+    def save(player: Player, dealer: Player): Unit
 }

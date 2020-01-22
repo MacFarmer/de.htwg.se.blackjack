@@ -99,6 +99,8 @@ class Tui(controller: ControllerInterface) extends Observer {
         printf("Player:\t\t Your total is %d\n", player.handValue())
       } else if (input.equals("save")) {
         controller.save(player, dealer)
+      } else if (input.equals("load")) {
+        controller.load
       }
     }
 

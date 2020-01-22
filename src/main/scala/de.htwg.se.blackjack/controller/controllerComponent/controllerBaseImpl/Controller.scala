@@ -55,6 +55,10 @@ class Controller @Inject() (var status: StatusStrategy) extends Observable with 
     println("Game Saved!\n")
   }
 
+  def load() = {
+    fileIO.load()
+  }
+
   //override def toString: String = status.toString
 
 }

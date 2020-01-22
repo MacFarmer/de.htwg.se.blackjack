@@ -20,7 +20,7 @@ class BlackjackModule extends AbstractModule with ScalaModule{
  //   bind[FileIOInterface].to[fileIoJsonImpl.FileIO]
    // bind[DeckInterface].to[model.deckComponent.deckBaseImpl.Deck]
    // bind[PlayerInterface].to[model.playerComponent.playerBaseImpl.Player]
-    bind[FileIOInterface].to[model.fileIoComponent.fileIoJsonImpl.FileIO]
+    bind[FileIOInterface].to[model.fileIoComponent.fileIoXmlImpl.FileIO]
   }
 }
 
