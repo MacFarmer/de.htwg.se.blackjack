@@ -15,8 +15,14 @@ class ControllerSpec extends WordSpec with Matchers {
     "draw card from deck" in {
       controller.draw() should not be("a King of Diamonds")
     }
-    "also a nice String represantation" in {
-      //status.handValue(player).toString should be("11")
+    "redo() should return nothing" in {
+      controller.redo() should be()
+    }
+    "undo() should return nothing" in {
+      controller.undo() should be()
+    }
+    "load() should return nothing" in {
+      controller.load() should be()
     }
   }}
 }
