@@ -27,10 +27,6 @@ class Controller @Inject() (var status: StatusStrategy) extends Observable with 
     notifyObservers
   }
 
-  def handValue(hand: Array[CardFactory]): Int = {
-    notifyObservers
-    status.handValue(hand)
-  }
 
   def draw(): CardFactory = {
     notifyObservers

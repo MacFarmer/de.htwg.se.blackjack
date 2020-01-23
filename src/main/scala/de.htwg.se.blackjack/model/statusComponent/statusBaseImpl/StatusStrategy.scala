@@ -41,23 +41,6 @@ class StatusStrategy extends StatusInterface {
     deck.cardsSingelton(deck.count)
   }
 
-  def handValue(hand: Array[CardFactory]): Int = {
-    var value = 0
-    for (card <- hand)
-      value += card.apply(value)
-    value
-  }
-
-  def handValue2(): Int = {
-    var value = 0
-    for (karten <- karte) {
-      value += karten.apply(value)
-    }
-    value
-  }
-
-  def getName(p: Player): String = p.name
-
 
   def WinLose(spieler: Integer, dealer: Integer): Int = {
     if (dealer > 21) {

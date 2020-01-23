@@ -16,10 +16,6 @@ case class Player(name: String) extends PlayerInterface{
     playerstack.push(karte.last)
   }
 
-  def set(playerName: String, stackOfPlayer: CardFactory): Unit =  {
-    karte.insert(0, stackOfPlayer)
-  }
-
   def addCard(cards: CardFactory) = {
     karte.push(cards)
     println(name + ":\t\t You are dealt " + cards.toString)

@@ -15,12 +15,6 @@ trait StatusInterface {
 
   def draw(): CardFactory
 
-  def handValue(hand: Array[CardFactory]): Int
-
-  def handValue2(): Int
-
-  def getName(p: Player): String
-
   def WinLose(spieler: Integer, dealer: Integer): Int
 
 }

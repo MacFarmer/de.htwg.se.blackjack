@@ -9,11 +9,9 @@ import scala.xml.Elem
 trait ControllerInterface {
   def shuffleDeck:Any
   def generateDeck:Any
-  def handValue(hand: Array[CardFactory]):Any
   def draw():CardFactory
   def undo():Unit
   def redo():Unit
-//  def load():Unit
   def save(player: Player, dealer: Player): Unit
   def load
 

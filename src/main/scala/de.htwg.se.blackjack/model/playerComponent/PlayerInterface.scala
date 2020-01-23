@@ -14,8 +14,6 @@ trait PlayerInterface {
 
   def returnCard()
 
-  def set(name: String, stackOfPlayer: CardFactory)
-
   def handValue(): Int
 
   //    for(karten <- karte)
