@@ -6,7 +6,6 @@ import scala.collection.mutable.Stack
 import scala.xml.Elem
 
 trait PlayerInterface {
-  def stack(): Stack[CardFactory]
 
   def addCard(cards: CardFactory): Unit
 
@@ -20,7 +19,6 @@ trait PlayerInterface {
   //      playerstack.push(karten)
   //    println(name + ":\t\t Your total is " + value)
 
-  def getPlayerStack(): Stack[CardFactory]
 
 
 

@@ -12,9 +12,6 @@ case class Player(name: String) extends PlayerInterface{
   var karte = Stack[CardFactory]()
   var playerstack = Stack[CardFactory]()
 
-  def stack(): Stack[CardFactory] = {
-    playerstack.push(karte.last)
-  }
 
   def addCard(cards: CardFactory) = {
     karte.push(cards)
@@ -31,38 +28,14 @@ case class Player(name: String) extends PlayerInterface{
 
   def handValue(): Int = {
     var value = 0
-//    if (!isAce()) {
-//      for (karten <- karte) {
-//        value += karten.apply(value)
-//      }
-//    } else if (isAce() && value <= 21) {
-//      for (karten <- karte) {
-//        value += karten.apply(value)
-//      }
-//    } else if (isAce() && value > 21) {
-//      for (karten <- karte) {
-//        value += karten.apply(value)
-//        value - 10
-//      }
-//    }
-    for(karten <- karte) {
 
-      if(!isAce()) {
+    for(karten <- karte) {
         value += karten.apply(value)
-      } else if (isAce() && value <= 21) {
-        value += karten.apply(value)
-      } else if (isAce() && value >= 21) {
-        value += karten.apply(value)
-        value- 10
-      }
     }
 
     value
   }
 
-  def getPlayerStack() = {
-    playerstack
-  }
 
 
 //    for(karten <- karte)
@@ -75,12 +48,12 @@ case class Player(name: String) extends PlayerInterface{
     name + "s Hand: " + karte
   }
 
-  def isAce(): Boolean = {
-//    karte.top.face == "Ace"
-//    karte.last.face == "Ace"
-    if(karte.last.face.contains("Ace") || karte.head.face.contains("Ace")) {
-      true
-    }
-    false
-  }
+//  def isAce(): Boolean = {
+////    karte.top.face == "Ace"
+////    karte.last.face == "Ace"
+//    if(karte.last.face.contains("Ace") || karte.head.face.contains("Ace")) {
+//      true
+//    }
+//    false
+//  }
 }

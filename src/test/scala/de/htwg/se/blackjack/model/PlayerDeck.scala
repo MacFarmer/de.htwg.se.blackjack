@@ -41,6 +41,16 @@ class PlayerDeck extends WordSpec with Matchers {
     "when player takes card" in {
       player.addCard(controller.draw()) should be()
     }
+    "player took card away" in {
+      player.takeCardAway()
+      player.playerstack.size should be(1)
+      player.karte.size should be(1)
+    }
+    "player got card back" in {
+      player.returnCard()
+      player.playerstack.size should be(0)
+    }
+
 
   }
 
