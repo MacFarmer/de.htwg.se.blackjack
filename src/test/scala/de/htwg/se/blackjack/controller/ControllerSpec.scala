@@ -18,8 +18,8 @@ class ControllerSpec extends WordSpec with Matchers {
     "redo() should return nothing" in {
       controller.redo() should be()
     }
-    "undo() should return nothing" in {
-      controller.undo() should be()
-    }
+//    "load() should return nothing" in {
+//      controller.load() should be()
+//    }
   }}
 }

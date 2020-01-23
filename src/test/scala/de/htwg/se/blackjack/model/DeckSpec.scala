@@ -16,5 +16,12 @@ class DeckSpec extends WordSpec with Matchers {
     "have some card less" in {
       deck.cardsSingelton.size -1 should be(51)
     }
+    "Deck Suit" in {
+      deck.Suits should be(Array("Clubs", "Spades", "Hearts", "Diamonds"))
+    }
+    "Deck Face" in {
+      deck.Faces should be(Array("2", "3", "4", "5", "6", "7", "8", "9", "10",
+        "Jack", "Queen", "King", "Ace"))
+    }
   }}
 }

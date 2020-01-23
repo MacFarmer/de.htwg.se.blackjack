@@ -31,6 +31,9 @@ class PlayerDeck extends WordSpec with Matchers {
     "name of dealer should be seen" in {
       dealer.name should be("Dealer")
     }
+    "playerStack should be empty" in {
+      player.playerstack.size should be(0)
+    }
 
   }
 
