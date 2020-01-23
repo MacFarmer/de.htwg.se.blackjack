@@ -21,8 +21,5 @@ class ControllerSpec extends WordSpec with Matchers {
     "undo() should return nothing" in {
       controller.undo() should be()
     }
-    "load() should return nothing" in {
-      controller.load() should be()
-    }
   }}
 }
