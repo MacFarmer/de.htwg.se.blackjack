@@ -20,6 +20,7 @@ import scalafx.scene.paint.Color.Black
 
 import scala.collection.mutable.Stack
 
+
 object Gui extends JFXApp {
   val status = new StatusStrategy
   val controller = new Controller(status)

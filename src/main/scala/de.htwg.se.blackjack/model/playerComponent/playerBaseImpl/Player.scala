@@ -70,11 +70,6 @@ case class Player(name: String) extends PlayerInterface{
 //    println(name + ":\t\t Your total is " + value)
 
 
-  def draw(): CardFactory = {
-    assert(DeckSingleton.count > 0)
-    DeckSingleton.count -= 1
-    DeckSingleton.cardsSingelton(DeckSingleton.count)
-  }
 
   override def toString: String = {
     name + "s Hand: " + karte

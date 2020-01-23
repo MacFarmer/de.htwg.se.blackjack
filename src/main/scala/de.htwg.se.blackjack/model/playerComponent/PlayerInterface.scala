@@ -22,7 +22,6 @@ trait PlayerInterface {
 
   def getPlayerStack(): Stack[CardFactory]
 
-  def draw(): CardFactory
 
 
 }

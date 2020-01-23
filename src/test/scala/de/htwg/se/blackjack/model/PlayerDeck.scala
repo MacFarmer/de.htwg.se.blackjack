@@ -34,6 +34,13 @@ class PlayerDeck extends WordSpec with Matchers {
     "playerStack should be empty" in {
       player.playerstack.size should be(0)
     }
+    "when controller undo" in {
+      controller.undo()
+      player.karte.size should be(1)
+    }
+    "when player takes card" in {
+      player.addCard(controller.draw()) should be()
+    }
 
   }
 

@@ -8,10 +8,10 @@ import scala.collection.mutable.Stack
 
 abstract class GameCommand(player: Player) extends Command {
 
-  override def doStep(): Unit = player.draw()
-
-  override def undoStep(): Unit = player.handValue()
-
-  override def redoStep(): Unit = player.draw()
+//  override def doStep(): Unit = player.draw()
+//
+//  override def undoStep(): Unit = player.handValue()
+//
+//  override def redoStep(): Unit = player.draw()
 
 }
