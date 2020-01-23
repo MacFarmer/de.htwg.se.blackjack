@@ -1,7 +1,7 @@
 package de.htwg.se.blackjack.controller
 
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
-import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.{Status, StatusStrategy}
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
 import org.scalatest.{Matchers, WordSpec}
 
 class ControllerSpec extends WordSpec with Matchers {

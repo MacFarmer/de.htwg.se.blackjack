@@ -1,7 +1,6 @@
 package de.htwg.se.blackjack.model.playerComponent
 
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
-import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
 
 import scala.collection.mutable.Stack
 import scala.xml.Elem

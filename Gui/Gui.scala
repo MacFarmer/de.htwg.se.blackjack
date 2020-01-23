@@ -3,7 +3,7 @@ package de.htwg.se.blackjack.aview.Gui
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player
-import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.{Status, StatusStrategy}
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
 import javafx.event.ActionEvent
 import scalafx.scene.control.Button
 import scalafx.Includes.handle

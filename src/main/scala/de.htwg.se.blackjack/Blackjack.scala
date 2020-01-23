@@ -7,7 +7,7 @@ import de.htwg.se.blackjack.BlackjackModule
 import de.htwg.se.blackjack.aview.Tui
 import de.htwg.se.blackjack.controller.controllerComponent.ControllerInterface
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
-import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.{Status, StatusStrategy}
+import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
 import de.htwg.se.blackjack.model.fileIoComponent.FileIOInterface
 
 

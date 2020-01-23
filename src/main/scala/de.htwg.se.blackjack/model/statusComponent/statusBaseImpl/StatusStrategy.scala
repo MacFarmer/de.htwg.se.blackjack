@@ -41,7 +41,7 @@ class StatusStrategy extends StatusInterface {
     deck.cardsSingelton(deck.count)
   }
 
-  def handValue(hand: List[CardFactory]): Int = {
+  def handValue(hand: Array[CardFactory]): Int = {
     var value = 0
     for (card <- hand)
       value += card.apply(value)

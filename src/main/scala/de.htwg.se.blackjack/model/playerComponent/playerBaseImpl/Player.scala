@@ -1,7 +1,7 @@
 package de.htwg.se.blackjack.model.playerComponent.playerBaseImpl
 
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
-import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
+import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.DeckSingleton
 import de.htwg.se.blackjack.model.playerComponent.PlayerInterface
 
 import scala.collection.mutable
@@ -75,9 +75,9 @@ case class Player(name: String) extends PlayerInterface{
 
 
   def draw(): CardFactory = {
-    assert(Deck.count > 0)
-    Deck.count -= 1
-    Deck.cards(Deck.count)
+    assert(DeckSingleton.count > 0)
+    DeckSingleton.count -= 1
+    DeckSingleton.cardsSingelton(DeckSingleton.count)
   }
 
   override def toString: String = {

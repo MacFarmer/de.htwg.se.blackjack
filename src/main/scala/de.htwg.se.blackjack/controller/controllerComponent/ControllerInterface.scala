@@ -9,7 +9,7 @@ import scala.xml.Elem
 trait ControllerInterface {
   def shuffleDeck:Any
   def generateDeck:Any
-  def handValue(hand: List[CardFactory]):Any
+  def handValue(hand: Array[CardFactory]):Any
   def draw():CardFactory
   def undo():Unit
   def redo():Unit
