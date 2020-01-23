@@ -8,7 +8,15 @@ case class CardFactory(val face: String, val suit: String) extends cardInterface
     //Dialog.showMessage(message = null, icon = new ImageIcon("image\\cards\\"+face+suit+".jpg"))
     a + face + " of " + suit
   }
-  def apply(value: Int) = face match {
+  def apply(value: Int): Int = face match {
+    case "Ace" => 11
+    case "Jack" => 10
+    case "Queen" => 10
+    case "King" => 10
+    case _ => face.toInt
+  }
+
+  def value: Int = face match  {
     case "Ace" => 11
     case "Jack" => 10
     case "Queen" => 10

@@ -16,7 +16,6 @@ class Status {
     }
   }
 
-
   def shuffleDeck() = {
     for (i <- 1 to 52) {
       // 0..i-2 already shuffled

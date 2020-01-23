@@ -4,7 +4,9 @@ import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.Deck
 import de.htwg.se.blackjack.model.playerComponent.PlayerInterface
 
+import scala.collection.mutable
 import scala.collection.mutable.Stack
+import scala.xml.{Elem, Node}
 
 case class Player(name: String) extends PlayerInterface{
   var karte = Stack[CardFactory]()
@@ -12,6 +14,10 @@ case class Player(name: String) extends PlayerInterface{
 
   def stack(): Stack[CardFactory] = {
     playerstack.push(karte.last)
+  }
+
+  def set(playerName: String, stackOfPlayer: CardFactory): Unit =  {
+    karte.insert(0, stackOfPlayer)
   }
 
   def addCard(cards: CardFactory) = {
@@ -29,11 +35,39 @@ case class Player(name: String) extends PlayerInterface{
 
   def handValue(): Int = {
     var value = 0
-    for (karten <- karte) {
-      value += karten.apply(value)
+//    if (!isAce()) {
+//      for (karten <- karte) {
+//        value += karten.apply(value)
+//      }
+//    } else if (isAce() && value <= 21) {
+//      for (karten <- karte) {
+//        value += karten.apply(value)
+//      }
+//    } else if (isAce() && value > 21) {
+//      for (karten <- karte) {
+//        value += karten.apply(value)
+//        value - 10
+//      }
+//    }
+    for(karten <- karte) {
+
+      if(!isAce()) {
+        value += karten.apply(value)
+      } else if (isAce() && value <= 21) {
+        value += karten.apply(value)
+      } else if (isAce() && value >= 21) {
+        value += karten.apply(value)
+        value- 10
+      }
     }
+
     value
   }
+
+  def getPlayerStack() = {
+    playerstack
+  }
+
 
 //    for(karten <- karte)
 //      playerstack.push(karten)
@@ -50,4 +84,12 @@ case class Player(name: String) extends PlayerInterface{
     name + "s Hand: " + karte
   }
 
+  def isAce(): Boolean = {
+//    karte.top.face == "Ace"
+//    karte.last.face == "Ace"
+    if(karte.last.face.contains("Ace") || karte.head.face.contains("Ace")) {
+      true
+    }
+    false
+  }
 }

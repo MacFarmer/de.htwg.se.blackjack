@@ -3,10 +3,16 @@ package de.htwg.se.blackjack.model.statusComponent.statusBaseImpl
 import de.htwg.se.blackjack.controller.GameState
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.DeckSingleton
+import de.htwg.se.blackjack.model.playerComponent.PlayerInterface
+import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player
 import de.htwg.se.blackjack.model.statusComponent.StatusInterface
+
+import scala.collection.mutable.Stack
+import scala.xml.Elem
 
 class StatusStrategy extends StatusInterface {
 
+  var karte = Stack[CardFactory]()
   var deck = DeckSingleton
 
   def generateDeck(): Unit = {
@@ -35,12 +41,23 @@ class StatusStrategy extends StatusInterface {
     deck.cardsSingelton(deck.count)
   }
 
-  def handValue(hand: Array[CardFactory]): Int = {
+  def handValue(hand: List[CardFactory]): Int = {
     var value = 0
     for (card <- hand)
       value += card.apply(value)
     value
   }
+
+  def handValue2(): Int = {
+    var value = 0
+    for (karten <- karte) {
+      value += karten.apply(value)
+    }
+    value
+  }
+
+  def getName(p: Player): String = p.name
+
 
   def WinLose(spieler: Integer, dealer: Integer): Int = {
     if (dealer > 21) {

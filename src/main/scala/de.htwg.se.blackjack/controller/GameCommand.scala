@@ -7,7 +7,7 @@ import de.htwg.se.blackjack.util.Command
 
 import scala.collection.mutable.Stack
 
-class GameCommand(player: Player) extends Command {
+abstract class GameCommand(player: Player) extends Command {
 
   override def doStep(): Unit = player.draw()
 

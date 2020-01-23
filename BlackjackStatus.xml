@@ -1,0 +1,12 @@
+<game>
+    <player>
+        <name player="Player"></name>
+        <value playerValue="12"></value>
+        <card playerCards="Stack(a Queen of Diamonds, a 2 of Diamonds)"></card>
+    </player>
+    <dealer>
+        <name dealer="Dealer"></name>
+        <value dealerValue="16"></value>
+        <card dealerCards="Stack(a Queen of Clubs, a 6 of Clubs)"></card>
+    </dealer>
+</game>

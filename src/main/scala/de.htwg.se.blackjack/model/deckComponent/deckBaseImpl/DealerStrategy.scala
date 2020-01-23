@@ -16,4 +16,5 @@ object DealerStrategy {
   def takeCard = dealer.addCard(controller.draw())
 
   def noCard = printf("Dealer:\t\t The dealer's total is %d\n", dealer.handValue())
+
 }

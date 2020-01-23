@@ -35,11 +35,23 @@ object Gui extends JFXApp {
             items = List(
               new MenuItem {
                 text = "New Game"
-                onAction = handle {
+                onAction = (e: ActionEvent) => {
 //                  content = Seq(view, label, buttonStart)
                   menuPane
                 }
-              }
+              },
+              new MenuItem {
+                text = "Undo"
+                onAction = (e: ActionEvent) => {
+                  controller.undo()
+                }
+              },
+              new MenuItem {
+                text = "Redo"
+                onAction = (e: ActionEvent) => {
+                  controller.redo()
+                }
+              },
             )
           },
           new Menu("Help") {
@@ -92,7 +104,7 @@ object Gui extends JFXApp {
       val buttonStart = new Button("Start Game")
       // Game Starts here after clicking Start Game Button
       buttonStart.onAction = (e: ActionEvent) => {
-        val img2 = new Image("file:image\\background\\blackjacktable.jpg")
+        val img2 = new Image("file:image\\background\\blackjacktable2.jpg")
         val view2 = new ImageView(img2)
         controller.generateDeck
         controller.shuffleDeck
@@ -117,10 +129,8 @@ object Gui extends JFXApp {
         Playerimg2.layoutY = 410
         dealer.addCard(controller.draw())
         val HiddenCard = new ImageView(new Image("file:image\\cards\\red_back.png", 86, 110, false, true))
-        //        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
         HiddenCard.layoutX = 580
         HiddenCard.layoutY = 80
-        //        val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.last.face + "" + dealer.karte.last.suit + ".png", 88, 62, false, true))
 
         val Playerimg3 = new ImageView(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
         Playerimg3.layoutX = 660
@@ -134,19 +144,17 @@ object Gui extends JFXApp {
         Dealerimg3.layoutX = 660
         Dealerimg3.layoutY = 80
 
-
         //Player Label
         val playerLabel = new Label(player.name + ": " + player.handValue())
         playerLabel.layoutY = 550
         playerLabel.layoutX = 560
-
-        //        val img2 = new ImageView(new Image("file:image\\cards\\" + player.karte.last.face + "" + player.karte.last.suit + ".png", 88, 62, false, true))
 
         //Dealer Label
         val dealerLabel = new Label(dealer.name + ": " + dealer.handValue())
         dealerLabel.layoutY = 35
         dealerLabel.layoutX = 560
 
+        // Hidden Card till pressed Stand
         val hiddenLabel = new Label("Hidden Card!")
         hiddenLabel.layoutY = 35
         hiddenLabel.layoutX = 560
@@ -160,8 +168,15 @@ object Gui extends JFXApp {
         standButton.layoutY = 215
         standButton.layoutX = 590
 
-        // Check if Player is below 21
+        val saveButton = new Button( "Save")
+        saveButton.layoutY = 47
+        saveButton.layoutX = 25
 
+        val loadButton = new Button( "Load")
+        loadButton.layoutY = 87
+        loadButton.layoutX = 25
+
+        // Check if Player is below 21
         if (dealer.handValue() > 21) {
           new Alert(AlertType.Information, "Dealer Bust!").showAndWait()
           content = Seq(view, menubar, label, buttonStart)
@@ -184,7 +199,7 @@ object Gui extends JFXApp {
             Playerimg2.setImage(new Image("file:image\\cards\\" + player.karte.top.face + "" + player.karte.top.suit + ".png", 86, 110, false, true))
 
             //pane.children = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-            content = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
+            content = List(view2, menubar, hitButton, standButton, saveButton, loadButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
           } else {
             if (player.handValue() > 21 && dealer.handValue() <= 21) {
               new Alert(AlertType.Information, "Player Bust!").showAndWait()
@@ -209,19 +224,28 @@ object Gui extends JFXApp {
         //content = List(pane)
 
 
+        saveButton.onAction = (e: ActionEvent) => {
+          controller.save(player, dealer)
+        }
+
+//        loadButton.onAction = (e: ActionEvent) => {
+//          controller.load(player, dealer)
+//        }
+
+
         standButton.onAction = (e: ActionEvent) => {
           val Dealerimg2 = new ImageView(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
           Dealerimg2.layoutX = 580
           Dealerimg2.layoutY = 80
           Dealerimg2.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
 //            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-          content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
+          content = List(view2, menubar, hitButton, standButton, saveButton, loadButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
           while (dealer.handValue() < 17) {
             dealer.addCard(controller.draw())
             Dealerimg3.setImage(new Image("file:image\\cards\\" + dealer.karte.top.face + "" + dealer.karte.top.suit + ".png", 86, 110, false, true))
             dealerLabel.setText(dealer.name + ": " + dealer.handValue())
 //            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-            content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, CardImg)
+            content = List(view2, menubar, hitButton, standButton, saveButton, loadButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, CardImg)
           }
 
             if(dealer.handValue() > 21 && player.handValue() <= 21) {
@@ -247,16 +271,7 @@ object Gui extends JFXApp {
 
         }
 
-        content = List(view2, menubar, hitButton, standButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, CardImg)
-
-//        if (standButton == true && hitButton == false) {
-//          content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, Dealerimg3, playerLabel, Playerimg1, Playerimg2, CardImg)
-//        }
-        //else if (Dealerimg2 == Dealerimg3) {
-        //  content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, Playerimg3, CardImg)
-        //} else if (standButton == true && dealer.handValue() <= 21 || player.handValue() <= 21)
-        //content = List(view2, menubar, hitButton, standButton, dealerLabel, Dealerimg1, Dealerimg2, playerLabel, Playerimg1, Playerimg2, CardImg)
-
+        content = List(view2, menubar, hitButton, standButton, saveButton, loadButton, hiddenLabel, Dealerimg1, HiddenCard, playerLabel, Playerimg1, Playerimg2, CardImg)
 
         if (player.handValue() > 21) {
           new Alert(AlertType.Information, "Player Bust!").showAndWait()
@@ -271,7 +286,6 @@ object Gui extends JFXApp {
 
       }
 
-
       buttonStart.layoutX = 500
       buttonStart.layoutY = 300
       val label = new Label("Welcome to Blackjack!") {
@@ -280,11 +294,6 @@ object Gui extends JFXApp {
       }
       label.layoutX = 250
       label.layoutY = 150
-      //content = Seq(view, menubar, label, buttonStart)
-
-      //val img = new Image("")
-      //val view = new ImageView(img, img)
-      //view.delegate
       pane.children = List(menubar, view, label)
       content = Seq(view, menubar,  label, buttonStart)
     }
