@@ -4,7 +4,7 @@ import de.htwg.se.blackjack.controller.controllerComponent.ControllerInterface
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.blackjack.util.{Observable, Observer}
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
-import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.DealerStrategy
+//import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.DealerStrategy
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player
 import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy
