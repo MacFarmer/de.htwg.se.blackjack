@@ -12,10 +12,10 @@ class StatusSpec extends WordSpec with Matchers {
       status.generateDeck() should be()
     }
     "a player should have a card with Value" in {
-     status.handValue(player) should be(10)
+     status.handValue(player) should be(11)
     }
     "also a nice String represantation" in {
-      status.handValue(player).toString should be("10")
+      status.handValue(player).toString should be("11")
     }
   }}
 }

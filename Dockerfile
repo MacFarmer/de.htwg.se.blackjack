@@ -1,4 +1,4 @@
 FROM hseeberger/scala-sbt
-WORKDIR /sudoku
-ADD . /sudoku
+WORKDIR /de.htwg.se.blackjack
+ADD . /de.htwg.se.blackjack
 CMD sbt test

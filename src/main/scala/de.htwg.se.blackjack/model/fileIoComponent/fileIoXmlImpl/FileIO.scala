@@ -32,8 +32,8 @@ class FileIO extends FileIOInterface {
     val playerName = (file \\ "game" \ "player" \ "name").text.toString()
     val playerValue = (file \\ "game" \ "player" \ "value").text.toInt
     val playerCards = (file \\ "game" \ "player" \ "@card")
-    player.karte.empty
-    player.karte.insert(0, playerCards.head)
+    //player.karte.empty
+   // player.karte.insert(0, playerCards.head)
     val dealerName = (file \\ "game" \ "dealer" \ "name").text.toString()
     val dealerValue = (file \\ "game" \ "player" \ "value").text.toInt
     //println(playerName + playerValue + dealerName + dealerValue + playerCards.getClass)

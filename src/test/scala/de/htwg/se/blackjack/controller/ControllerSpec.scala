@@ -13,7 +13,7 @@ class ControllerSpec extends WordSpec with Matchers {
       controller.generateDeck should be()
     }
     "draw card from deck" in {
-      controller.draw() should not be("a King of Diamons")
+      controller.draw() should not be("a King of Diamonds")
     }
     "also a nice String represantation" in {
       //status.handValue(player).toString should be("11")
