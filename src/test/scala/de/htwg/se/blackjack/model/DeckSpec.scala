@@ -10,11 +10,11 @@ class DeckSpec extends WordSpec with Matchers {
     "should not yet contain" in {
       deck.cardsSingelton.contains(new CardFactory("Hearts", "8")) should be (false)
     }
-//    "have 48 Cards after draw() was used" in {
-//      deck.count should be(51)
-//    }
-//    "have some card less" in {
-//      deck.count -1 should be(50)
-//    }
+    "have 52 Cards" in {
+      deck.cardsSingelton.size should be (52)
+    }
+    "have some card less" in {
+      deck.cardsSingelton.size -1 should be(51)
+    }
   }}
 }
