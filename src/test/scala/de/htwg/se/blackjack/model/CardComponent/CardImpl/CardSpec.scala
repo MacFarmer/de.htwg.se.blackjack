@@ -1,4 +1,4 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.CardComponent.CardImpl
 
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import org.scalatest.{Matchers, WordSpec}
@@ -30,7 +30,7 @@ class CardSpec extends WordSpec with Matchers {
       card3.suit.toInt should be(4)
       card4.suit.toInt should be(3)
     }
-    "also have a nice String represantation" in {
+    "also have a nice String representation" in {
       card1.toString should be("a Diamonds of 8")
       card2.toString should be("a Hearts of 2")
       card3.toString should be("a Spades of 4")

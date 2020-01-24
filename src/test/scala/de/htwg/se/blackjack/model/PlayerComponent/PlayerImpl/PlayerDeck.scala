@@ -1,4 +1,4 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.PlayerComponent.PlayerImpl
 
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.blackjack.model.playerComponent.playerBaseImpl.Player

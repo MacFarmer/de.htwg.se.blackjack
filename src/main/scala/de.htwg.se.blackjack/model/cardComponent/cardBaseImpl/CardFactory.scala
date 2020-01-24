@@ -16,11 +16,11 @@ case class CardFactory(val face: String, val suit: String) extends cardInterface
     case _ => face.toInt
   }
 
-  def value: Int = face match  {
-    case "Ace" => 11
-    case "Jack" => 10
-    case "Queen" => 10
-    case "King" => 10
-    case _ => face.toInt
-  }
+//  def value: Int = face match  {
+//    case "Ace" => 11
+//    case "Jack" => 10
+//    case "Queen" => 10
+//    case "King" => 10
+//    case _ => face.toInt
+//  }
 }

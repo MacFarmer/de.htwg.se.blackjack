@@ -1,4 +1,4 @@
-package de.htwg.se.blackjack.controller
+package de.htwg.se.blackjack.controller.ControllerComponent.ControllerImpl
 
 import de.htwg.se.blackjack.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.blackjack.model.statusComponent.statusBaseImpl.StatusStrategy

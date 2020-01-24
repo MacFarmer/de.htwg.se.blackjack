@@ -1,4 +1,4 @@
-package de.htwg.se.blackjack.model
+package de.htwg.se.blackjack.model.DeckComponent.DeckImpl
 
 import de.htwg.se.blackjack.model.cardComponent.cardBaseImpl.CardFactory
 import de.htwg.se.blackjack.model.deckComponent.deckBaseImpl.DeckSingleton

@@ -1,5 +1,6 @@
-package de.htwg.se.blackjack.controller
+package de.htwg.se.blackjack.controller.GameStateComponent.GameStateImpl
 
+import de.htwg.se.blackjack.controller.GameState
 import org.scalatest.{Matchers, WordSpec}
 
 class GameStateSpec extends WordSpec with Matchers {
